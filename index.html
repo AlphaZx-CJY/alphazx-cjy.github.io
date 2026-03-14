@@ -54,6 +54,41 @@
         .about-card:hover {
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
         }
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .timeline-item {
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #e5e7eb;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #15CE58;
+        }
+        .timeline-item:last-child::before {
+            height: 8px;
+        }
+
+        .skill-item {
+            transition: all 0.2s ease;
+        }
+        .skill-item:hover {
+            transform: translateX(4px);
+        }
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
@@ -79,7 +114,7 @@
             <div class="text-center">
                 <!-- 欢迎语 -->
                 <div class="mb-6">
-                    <span class="px-4 py-2 bg-primary/10 dark:bg-primary/20 rounded-full text-sm font-medium text-primary">
+                    <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300">
                         👋 欢迎来到我的个人主页
                     </span>
                 </div>
@@ -110,15 +145,15 @@
                 
                 <!-- 联系方式 -->
                 <div class="flex flex-wrap justify-center gap-4 mb-10">
-                    <a href="mailto:contact@alphazx.dev" class="w-12 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:border-primary hover:text-primary transition-colors">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <a href="#" class="w-12 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:border-primary hover:text-primary transition-colors">
-                        <i class="fab fa-weixin"></i>
-                    </a>
-                    <a href="https://github.com/alphazx" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:border-primary hover:text-primary transition-colors">
-                        <i class="fab fa-github"></i>
-                    </a>
+                    <a href="mailto:contact@alphazx.dev" class="w-12 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary/10 dark:hover:bg-primary/20 hover:border-primary hover:text-primary transition-colors">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary/10 dark:hover:bg-primary/20 hover:border-primary hover:text-primary transition-colors">
+                            <i class="fab fa-weixin"></i>
+                        </a>
+                        <a href="https://github.com/alphazx" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary/10 dark:hover:bg-primary/20 hover:border-primary hover:text-primary transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
                 </div>
                 
                 <!-- 核心标签 -->
@@ -155,99 +190,197 @@
                     <!-- 现在在做 -->
                     <div class="bg-gray-50 dark:bg-gray-800/50 p-5 rounded-xl border border-gray-200/50 dark:border-gray-700/30">
                         <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                                <i class="fas fa-rocket text-primary"></i>
+                            <div class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                                <i class="fas fa-rocket text-primary text-sm"></i>
                             </div>
-                            <h3 class="font-semibold">现在在做</h3>
+                            <h3 class="font-semibold text-sm">现在在做</h3>
                         </div>
                         <ul class="space-y-3">
                             <li class="flex items-start gap-3">
-                                <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
-                                <div>
-                                    <p class="font-medium text-gray-800 dark:text-gray-200 text-sm">搭建个人主页</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">探索 Vibe Coding 的新方式</p>
-                                </div>
+                                <span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
+                                <p class="text-sm text-gray-700 dark:text-gray-300">搭建个人主页 · Vibe Coding</p>
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
-                                <div>
-                                    <p class="font-medium text-gray-800 dark:text-gray-200 text-sm">开发 IDE 插件</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">提升开发效率的工具链</p>
-                                </div>
+                                <span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
+                                <p class="text-sm text-gray-700 dark:text-gray-300">开发 IDE 插件 · 提升效率</p>
                             </li>
                         </ul>
                     </div>
                     
-                    <!-- 擅长方向 -->
+                    <!-- 个人经历时间线 -->
                     <div class="bg-gray-50 dark:bg-gray-800/50 p-5 rounded-xl border border-gray-200/50 dark:border-gray-700/30">
                         <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
-                                <i class="fas fa-star text-blue-500"></i>
+                            <div class="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center">
+                                <i class="fas fa-history text-purple-500 text-sm"></i>
                             </div>
-                            <h3 class="font-semibold">擅长方向</h3>
+                            <h3 class="font-semibold text-sm">个人经历</h3>
                         </div>
                         <ul class="space-y-3">
                             <li class="flex items-start gap-3">
-                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-1.5 flex-shrink-0"></span>
                                 <div>
-                                    <p class="font-medium text-gray-800 dark:text-gray-200 text-sm">LLM 应用开发</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">大语言模型的工程化实践</p>
+                                    <p class="text-sm font-medium text-gray-700 dark:text-gray-300">华为 OD (2021 至今)</p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">IDE 亮点特性开发</p>
                                 </div>
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0"></span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-1.5 flex-shrink-0"></span>
                                 <div>
-                                    <p class="font-medium text-gray-800 dark:text-gray-200 text-sm">IDE 与工具链</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">开发者体验优化</p>
+                                    <p class="text-sm font-medium text-gray-700 dark:text-gray-300">北京华宇软件 (2019-2021)</p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">语音识别、姿态识别项目</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-1.5 flex-shrink-0"></span>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700 dark:text-gray-300">杭州电子科技大学 (2015-2019)</p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">本科毕业</p>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
                 
-                <!-- 个人特点 -->
-                <div class="bg-amber-50 dark:bg-amber-900/20 p-6 rounded-xl border border-amber-200/50 dark:border-amber-700/30 mb-8">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center">
-                            <i class="fas fa-lightbulb text-amber-500"></i>
+                <!-- 技术能力打分制 -->
+                <div class="mb-8">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center">
+                            <i class="fas fa-code text-purple-500 text-sm"></i>
                         </div>
-                        <h3 class="font-semibold">我的特点</h3>
+                        <h3 class="font-semibold text-sm">技术能力</h3>
                     </div>
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-amber-500 mt-1"></i>
-                            <p class="text-sm text-gray-700 dark:text-gray-300">持续学习，保持技术敏感度</p>
+                    <div class="grid grid-cols-2 gap-8">
+                        <!-- 语言能力打分 -->
+                        <div class="space-y-4">
+                            <div class="language-item">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">TS</span>
+                                    <span class="text-xs text-gray-500 dark:text-gray-400">4.5/5</span>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                    <div class="bg-primary h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="language-item">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Java</span>
+                                    <span class="text-xs text-gray-500 dark:text-gray-400">4.5/5</span>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                    <div class="bg-primary h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="language-item">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Python</span>
+                                    <span class="text-xs text-gray-500 dark:text-gray-400">3/5</span>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                    <div class="bg-primary h-2 rounded-full" style="width: 60%"></div>
+                                </div>
+                            </div>
+                            <div class="language-item">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">C++</span>
+                                    <span class="text-xs text-gray-500 dark:text-gray-400">3/5</span>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                    <div class="bg-primary h-2 rounded-full" style="width: 60%"></div>
+                                </div>
+                            </div>
+                            <div class="language-item">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">算法</span>
+                                    <span class="text-xs text-gray-500 dark:text-gray-400">3/5</span>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                    <div class="bg-primary h-2 rounded-full" style="width: 60%"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-amber-500 mt-1"></i>
-                            <p class="text-sm text-gray-700 dark:text-gray-300">相信简单的力量，追求极简设计</p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-amber-500 mt-1"></i>
-                            <p class="text-sm text-gray-700 dark:text-gray-300">热衷地理，探索世界的多样性</p>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-amber-500 mt-1"></i>
-                            <p class="text-sm text-gray-700 dark:text-gray-300">用技术解决实际问题</p>
+                        
+                        <!-- 技能方向 -->
+                        <div class="space-y-4">
+                            <div class="skill-item flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                <div class="w-7 h-7 rounded bg-blue-500/10 flex items-center justify-center">
+                                    <i class="fas fa-brain text-blue-500 text-xs"></i>
+                                </div>
+                                <div>
+                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">LLM 应用开发</span>
+                                    <div class="flex flex-wrap gap-1 mt-1">
+                                        <span class="px-2 py-0.5 bg-blue-500/10 dark:bg-blue-500/20 text-blue-500 rounded-full text-xs">TS</span>
+                                        <span class="px-2 py-0.5 bg-blue-500/10 dark:bg-blue-500/20 text-blue-500 rounded-full text-xs">Java</span>
+                                        <span class="px-2 py-0.5 bg-blue-500/10 dark:bg-blue-500/20 text-blue-500 rounded-full text-xs">Python</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                <div class="w-7 h-7 rounded bg-purple-500/10 flex items-center justify-center">
+                                    <i class="fas fa-tools text-purple-500 text-xs"></i>
+                                </div>
+                                <div>
+                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">IDE 与工具链</span>
+                                    <div class="flex flex-wrap gap-1 mt-1">
+                                        <span class="px-2 py-0.5 bg-purple-500/10 dark:bg-purple-500/20 text-purple-500 rounded-full text-xs">TS</span>
+                                        <span class="px-2 py-0.5 bg-purple-500/10 dark:bg-purple-500/20 text-purple-500 rounded-full text-xs">Java</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                <div class="w-7 h-7 rounded bg-cyan-500/10 flex items-center justify-center">
+                                    <i class="fas fa-desktop text-cyan-500 text-xs"></i>
+                                </div>
+                                <div>
+                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">前端开发</span>
+                                    <div class="flex flex-wrap gap-1 mt-1">
+                                        <span class="px-2 py-0.5 bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-500 rounded-full text-xs">TS</span>
+                                        <span class="px-2 py-0.5 bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-500 rounded-full text-xs">React</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                                <div class="w-7 h-7 rounded bg-primary/10 flex items-center justify-center">
+                                    <i class="fas fa-robot text-primary text-xs"></i>
+                                </div>
+                                <div>
+                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">AI 相关</span>
+                                    <div class="flex flex-wrap gap-1 mt-1">
+                                        <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">Python</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- 技能标签 -->
-                <div class="pt-6 border-t border-gray-200 dark:border-gray-700/50">
+                <!-- 个人特点 -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 p-5 rounded-xl border border-amber-200/50 dark:border-amber-700/30">
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center">
-                            <i class="fas fa-code text-purple-500"></i>
+                        <div class="w-9 h-9 rounded-lg bg-amber-500/10 flex items-center justify-center">
+                            <i class="fas fa-lightbulb text-amber-500 text-sm"></i>
                         </div>
-                        <h3 class="font-semibold">技术栈</h3>
+                        <h3 class="font-semibold text-sm">我的特点</h3>
                     </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1.5 bg-yellow-500/10 rounded-full text-xs font-medium text-yellow-600 dark:text-yellow-400">JavaScript</span>
-                        <span class="px-3 py-1.5 bg-blue-500/10 rounded-full text-xs font-medium text-blue-600 dark:text-blue-400">AI</span>
-                        <span class="px-3 py-1.5 bg-red-500/10 rounded-full text-xs font-medium text-red-600 dark:text-red-400">Java</span>
-                        <span class="px-3 py-1.5 bg-blue-400/10 rounded-full text-xs font-medium text-blue-500">C++</span>
-                        <span class="px-3 py-1.5 bg-blue-600/10 rounded-full text-xs font-medium text-blue-700 dark:text-blue-300">Python</span>
-                        <span class="px-3 py-1.5 bg-cyan-500/10 rounded-full text-xs font-medium text-cyan-600 dark:text-cyan-400">React</span>
+                    <div class="grid md:grid-cols-2 gap-x-6 gap-y-3">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-amber-500 text-xs"></i>
+                            <p class="text-xs text-gray-700 dark:text-gray-300">持续学习，保持技术敏感度</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-amber-500 text-xs"></i>
+                            <p class="text-xs text-gray-700 dark:text-gray-300">相信简单的力量，追求极简设计</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-amber-500 text-xs"></i>
+                            <p class="text-xs text-gray-700 dark:text-gray-300">热衷地理，探索世界的多样性</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-amber-500 text-xs"></i>
+                            <p class="text-xs text-gray-700 dark:text-gray-300">用技术解决实际问题</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -255,60 +388,146 @@
             <!-- 项目展示 -->
             <div class="flex items-center justify-between mb-8">
                 <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">个人项目</h2>
-                <a href="https://github.com/alphazx?tab=repositories" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-primary hover:text-primary text-gray-600 dark:text-gray-300 rounded-full text-sm transition-colors">
+                <button id="viewMoreBtn" class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-primary hover:text-primary text-gray-600 dark:text-gray-300 rounded-full text-sm transition-colors">
                     <span>查看更多</span>
                     <i class="fas fa-arrow-right"></i>
-                </a>
+                </button>
             </div>
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- 项目1 -->
-                <div class="project-card bg-white dark:bg-gray-900 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700/50 shadow-sm hover:shadow-md">
-                    <div class="h-36 bg-gradient-to-br from-gray-50 to-gray-100/50 dark:from-gray-700/30 dark:to-gray-600/20 flex items-center justify-center">
-                        <i class="fas fa-robot text-4xl text-primary/40 group-hover:text-primary/60 transition-colors"></i>
+            
+            <!-- 固定项目 -->
+            <div class="mb-8">
+                <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100 flex items-center gap-2">
+                    <i class="fas fa-thumbtack text-amber-500"></i>
+                    <span>固定项目</span>
+                </h3>
+                <div class="project-card bg-white dark:bg-gray-900 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700/50 shadow-sm hover:shadow-md mb-6">
+                    <div class="h-36 sm:h-40 bg-gradient-to-br from-gray-50 to-gray-100/50 dark:from-gray-700/30 dark:to-gray-600/20 flex items-center justify-center">
+                        <i class="fas fa-robot text-4xl sm:text-5xl text-primary/40 group-hover:text-primary/60 transition-colors"></i>
                     </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-lg font-bold">AI IDE 插件</h3>
-                            <div class="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+                    <div class="p-5 sm:p-6">
+                        <div class="flex justify-between items-start mb-3 sm:mb-4">
+                            <h3 class="text-base sm:text-lg font-bold">AI IDE 插件</h3>
+                            <div class="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
                                 <i class="fas fa-star text-yellow-500"></i>
                                 <span>42</span>
                             </div>
                         </div>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">基于LLM的智能代码辅助工具，提供代码补全、重构建议等功能。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
+                        <p class="text-gray-600 dark:text-gray-400 mb-4 sm:mb-5 text-xs sm:text-sm leading-relaxed">基于LLM的智能代码辅助工具，提供代码补全、重构建议等功能。支持多种编程语言，集成了OpenAI API，可大幅提升开发效率。</p>
+                        <div class="flex flex-wrap gap-1 sm:gap-2 mb-4 sm:mb-5">
                             <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">TypeScript</span>
                             <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">VS Code API</span>
                             <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">OpenAI</span>
+                            <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">LLM</span>
                         </div>
                         <div class="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400">
                             <span>2026-03-01</span>
-                            <a href="#" class="hover:text-primary">查看详情</a>
+                            <a href="#" class="hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary p-1 rounded transition-colors">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 普通项目 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                <!-- 项目1 -->
+                <div class="project-card bg-white dark:bg-gray-900 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700/50 shadow-sm hover:shadow-md">
+                    <div class="h-28 sm:h-32 bg-gradient-to-br from-gray-50 to-gray-100/50 dark:from-gray-700/30 dark:to-gray-600/20 flex items-center justify-center">
+                        <i class="fas fa-comments text-2xl sm:text-3xl text-primary/40 group-hover:text-primary/60 transition-colors"></i>
+                    </div>
+                    <div class="p-4 sm:p-5">
+                        <div class="flex justify-between items-start mb-2 sm:mb-3">
+                            <h3 class="text-sm sm:text-base font-bold">数字分身聊天</h3>
+                            <div class="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-star text-yellow-500"></i>
+                                <span>28</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2 sm:mb-3 text-xs leading-relaxed">个人主页的智能问答系统</p>
+                        <div class="flex flex-wrap gap-1 mb-2 sm:mb-3">
+                            <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">JavaScript</span>
+                            <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">LLM</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400">
+                            <span>2026-03-10</span>
+                            <a href="#" class="hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary p-1 rounded transition-colors">查看详情</a>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 项目2 -->
                 <div class="project-card bg-white dark:bg-gray-900 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700/50 shadow-sm hover:shadow-md">
-                    <div class="h-36 bg-gradient-to-br from-gray-50 to-gray-100/50 dark:from-gray-700/30 dark:to-gray-600/20 flex items-center justify-center">
-                        <i class="fas fa-comments text-4xl text-primary/40 group-hover:text-primary/60 transition-colors"></i>
+                    <div class="h-28 sm:h-32 bg-gradient-to-br from-gray-50 to-gray-100/50 dark:from-gray-700/30 dark:to-gray-600/20 flex items-center justify-center">
+                        <i class="fas fa-chart-line text-2xl sm:text-3xl text-primary/40 group-hover:text-primary/60 transition-colors"></i>
                     </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-lg font-bold">数字分身聊天</h3>
-                            <div class="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+                    <div class="p-4 sm:p-5">
+                        <div class="flex justify-between items-start mb-2 sm:mb-3">
+                            <h3 class="text-sm sm:text-base font-bold">数据可视化工具</h3>
+                            <div class="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
                                 <i class="fas fa-star text-yellow-500"></i>
-                                <span>28</span>
+                                <span>15</span>
                             </div>
                         </div>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">个人主页的智能问答系统，可以回答关于我的各种问题。</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">JavaScript</span>
-                            <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">Tailwind CSS</span>
-                            <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">LLM</span>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2 sm:mb-3 text-xs leading-relaxed">基于React的数据分析与可视化工具</p>
+                        <div class="flex flex-wrap gap-1 mb-2 sm:mb-3">
+                            <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">React</span>
+                            <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">TypeScript</span>
                         </div>
                         <div class="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400">
-                            <span>2026-03-10</span>
-                            <a href="#" class="hover:text-primary">查看详情</a>
+                            <span>2026-02-15</span>
+                            <a href="#" class="hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary p-1 rounded transition-colors">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 更多项目 (默认隐藏) -->
+            <div id="moreProjects" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- 项目3 -->
+                <div class="project-card bg-white dark:bg-gray-900 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700/50 shadow-sm hover:shadow-md">
+                    <div class="h-28 sm:h-32 bg-gradient-to-br from-gray-50 to-gray-100/50 dark:from-gray-700/30 dark:to-gray-600/20 flex items-center justify-center">
+                        <i class="fas fa-lock text-2xl sm:text-3xl text-primary/40 group-hover:text-primary/60 transition-colors"></i>
+                    </div>
+                    <div class="p-4 sm:p-5">
+                        <div class="flex justify-between items-start mb-2 sm:mb-3">
+                            <h3 class="text-sm sm:text-base font-bold">密码管理工具</h3>
+                            <div class="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-star text-yellow-500"></i>
+                                <span>12</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2 sm:mb-3 text-xs leading-relaxed">本地密码管理与生成工具</p>
+                        <div class="flex flex-wrap gap-1 mb-2 sm:mb-3">
+                            <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">Electron</span>
+                            <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">TypeScript</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400">
+                            <span>2026-01-20</span>
+                            <a href="#" class="hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary p-1 rounded transition-colors">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 项目4 -->
+                <div class="project-card bg-white dark:bg-gray-900 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700/50 shadow-sm hover:shadow-md">
+                    <div class="h-28 sm:h-32 bg-gradient-to-br from-gray-50 to-gray-100/50 dark:from-gray-700/30 dark:to-gray-600/20 flex items-center justify-center">
+                        <i class="fas fa-language text-2xl sm:text-3xl text-primary/40 group-hover:text-primary/60 transition-colors"></i>
+                    </div>
+                    <div class="p-4 sm:p-5">
+                        <div class="flex justify-between items-start mb-2 sm:mb-3">
+                            <h3 class="text-sm sm:text-base font-bold">翻译工具</h3>
+                            <div class="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-star text-yellow-500"></i>
+                                <span>9</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 mb-2 sm:mb-3 text-xs leading-relaxed">基于AI的多语言翻译工具</p>
+                        <div class="flex flex-wrap gap-1 mb-2 sm:mb-3">
+                            <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">Python</span>
+                            <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">Flask</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400">
+                            <span>2025-12-10</span>
+                            <a href="#" class="hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary p-1 rounded transition-colors">查看详情</a>
                         </div>
                     </div>
                 </div>
@@ -394,13 +613,13 @@
                         我是 AlphaZx，一个专注于 LLM 应用开发与 IDE 工具链的软件工程师。致力于用 AI 提升开发效率，探索 Vibe Coding 的新方式。
                     </p>
                     <div class="flex gap-4">
-                        <a href="mailto:contact@alphazx.dev" class="text-gray-500 dark:text-gray-400 hover:text-primary transition-colors">
+                        <a href="mailto:contact@alphazx.dev" class="text-gray-500 dark:text-gray-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary p-2 rounded-lg transition-colors">
                             <i class="fas fa-envelope"></i>
                         </a>
-                        <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-primary transition-colors">
+                        <a href="#" class="text-gray-500 dark:text-gray-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary p-2 rounded-lg transition-colors">
                             <i class="fab fa-weixin"></i>
                         </a>
-                        <a href="https://github.com/alphazx" target="_blank" class="text-gray-500 dark:text-gray-400 hover:text-primary transition-colors">
+                        <a href="https://github.com/alphazx" target="_blank" rel="noopener noreferrer" class="text-gray-500 dark:text-gray-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary p-2 rounded-lg transition-colors">
                             <i class="fab fa-github"></i>
                         </a>
                     </div>
@@ -410,9 +629,9 @@
                 <div>
                     <h3 class="font-bold text-lg mb-4 text-gray-900 dark:text-gray-100">友链</h3>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="https://github.com/alphazx" target="_blank" class="text-gray-500 dark:text-gray-400 hover:text-primary transition-colors">GitHub</a></li>
-                        <li><a href="#" class="text-gray-500 dark:text-gray-400 hover:text-primary transition-colors">个人博客</a></li>
-                        <li><a href="#" class="text-gray-500 dark:text-gray-400 hover:text-primary transition-colors">技术社区</a></li>
+                        <li><a href="https://github.com/alphazx" target="_blank" class="text-gray-500 dark:text-gray-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary p-1.5 rounded transition-colors">GitHub</a></li>
+                        <li><a href="#" class="text-gray-500 dark:text-gray-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary p-1.5 rounded transition-colors">个人博客</a></li>
+                        <li><a href="#" class="text-gray-500 dark:text-gray-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary p-1.5 rounded transition-colors">技术社区</a></li>
                     </ul>
                 </div>
             </div>
