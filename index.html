@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlphaZx - 丛继晔 | 个人主页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#15CE58',
+                        'primary-dark': '#0FA847',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #15CE58 0%, #0FA847 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .chat-message {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .typing-dot {
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+        }
+        .about-card {
+            transition: all 0.3s ease;
+        }
+        .about-card:hover {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 w-full bg-white/70 dark:bg-gray-900/70 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50 z-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="font-bold text-xl gradient-text">AlphaZx</div>
+                <div class="flex items-center gap-4">
+                    <button id="themeToggle" class="p-2 rounded-lg hover:bg-gray-100/50 dark:hover:bg-gray-800/50 transition-colors">
+                        <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                        <i class="fas fa-moon text-blue-400 hidden dark:block"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <!-- 首屏：个人资料 + 欢迎语 -->
+        <section class="min-h-[calc(100vh-6rem)] flex items-center justify-center mb-20">
+            <div class="text-center">
+                <!-- 欢迎语 -->
+                <div class="mb-6">
+                    <span class="px-4 py-2 bg-primary/10 dark:bg-primary/20 rounded-full text-sm font-medium text-primary">
+                        👋 欢迎来到我的个人主页
+                    </span>
+                </div>
+                
+                <!-- 头像 -->
+                <div class="relative inline-block mb-8">
+                    <div class="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-white text-5xl font-bold shadow-xl shadow-primary/20">
+                        A
+                    </div>
+                    <div class="absolute bottom-2 right-2 w-6 h-6 bg-primary rounded-full border-4 border-white dark:border-gray-900 shadow-md"></div>
+                </div>
+                
+                <!-- 名字和职业 -->
+                <div class="mb-6">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-2 tracking-tight text-gray-900 dark:text-gray-100">
+                        AlphaZx
+                    </h1>
+                    <p class="text-lg text-gray-500 dark:text-gray-400 mb-2">丛继晔</p>
+                    <p class="text-xl text-gray-600 dark:text-gray-300 font-medium">
+                        软件工程师 · AI 工具开发者
+                    </p>
+                </div>
+                
+                <!-- 简介 -->
+                <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed">
+                    专注于 LLM 应用开发与 IDE 工具链，致力于用 AI 提升开发效率
+                </p>
+                
+                <!-- 联系方式 -->
+                <div class="flex flex-wrap justify-center gap-4 mb-10">
+                    <a href="mailto:contact@alphazx.dev" class="w-12 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:border-primary hover:text-primary transition-colors">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:border-primary hover:text-primary transition-colors">
+                        <i class="fab fa-weixin"></i>
+                    </a>
+                    <a href="https://github.com/alphazx" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:border-primary hover:text-primary transition-colors">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+                
+                <!-- 核心标签 -->
+                <div class="flex flex-wrap justify-center gap-2 mb-12">
+                    <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 rounded-full text-xs font-medium text-primary">
+                        Vibe Coding
+                    </span>
+                    <span class="px-3 py-1.5 bg-blue-500/10 dark:bg-blue-500/20 rounded-full text-xs font-medium text-blue-500">
+                        AI 工具链
+                    </span>
+                    <span class="px-3 py-1.5 bg-amber-500/10 dark:bg-amber-500/20 rounded-full text-xs font-medium text-amber-500">
+                        LLM 应用
+                    </span>
+                </div>
+                
+                <!-- 聊天入口 -->
+                <a href="#chat" class="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-primary to-primary-dark text-white rounded-full font-medium shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all transform hover:-translate-y-0.5">
+                    <i class="fas fa-comments"></i>
+                    <span>与数字分身聊聊</span>
+                    <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                </a>
+            </div>
+        </section>
+
+        <!-- 内容区：关于我 + 项目展示 -->
+        <section class="mb-24">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-100">关于我</h2>
+                <p class="text-gray-500 dark:text-gray-400">喜欢地理，喜欢将复杂的东西简单化</p>
+            </div>
+            
+            <div class="about-card bg-white dark:bg-gray-900 rounded-2xl p-6 md:p-8 border border-gray-200 dark:border-gray-700/50 shadow-md hover:shadow-lg transition-all mb-12">
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <!-- 现在在做 -->
+                    <div class="bg-gray-50 dark:bg-gray-800/50 p-5 rounded-xl border border-gray-200/50 dark:border-gray-700/30">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                                <i class="fas fa-rocket text-primary"></i>
+                            </div>
+                            <h3 class="font-semibold">现在在做</h3>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                                <div>
+                                    <p class="font-medium text-gray-800 dark:text-gray-200 text-sm">搭建个人主页</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">探索 Vibe Coding 的新方式</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                                <div>
+                                    <p class="font-medium text-gray-800 dark:text-gray-200 text-sm">开发 IDE 插件</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">提升开发效率的工具链</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 擅长方向 -->
+                    <div class="bg-gray-50 dark:bg-gray-800/50 p-5 rounded-xl border border-gray-200/50 dark:border-gray-700/30">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                                <i class="fas fa-star text-blue-500"></i>
+                            </div>
+                            <h3 class="font-semibold">擅长方向</h3>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0"></span>
+                                <div>
+                                    <p class="font-medium text-gray-800 dark:text-gray-200 text-sm">LLM 应用开发</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">大语言模型的工程化实践</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0"></span>
+                                <div>
+                                    <p class="font-medium text-gray-800 dark:text-gray-200 text-sm">IDE 与工具链</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">开发者体验优化</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 个人特点 -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 p-6 rounded-xl border border-amber-200/50 dark:border-amber-700/30 mb-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center">
+                            <i class="fas fa-lightbulb text-amber-500"></i>
+                        </div>
+                        <h3 class="font-semibold">我的特点</h3>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-amber-500 mt-1"></i>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">持续学习，保持技术敏感度</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-amber-500 mt-1"></i>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">相信简单的力量，追求极简设计</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-amber-500 mt-1"></i>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">热衷地理，探索世界的多样性</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-amber-500 mt-1"></i>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">用技术解决实际问题</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 技能标签 -->
+                <div class="pt-6 border-t border-gray-200 dark:border-gray-700/50">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center">
+                            <i class="fas fa-code text-purple-500"></i>
+                        </div>
+                        <h3 class="font-semibold">技术栈</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-yellow-500/10 rounded-full text-xs font-medium text-yellow-600 dark:text-yellow-400">JavaScript</span>
+                        <span class="px-3 py-1.5 bg-blue-500/10 rounded-full text-xs font-medium text-blue-600 dark:text-blue-400">AI</span>
+                        <span class="px-3 py-1.5 bg-red-500/10 rounded-full text-xs font-medium text-red-600 dark:text-red-400">Java</span>
+                        <span class="px-3 py-1.5 bg-blue-400/10 rounded-full text-xs font-medium text-blue-500">C++</span>
+                        <span class="px-3 py-1.5 bg-blue-600/10 rounded-full text-xs font-medium text-blue-700 dark:text-blue-300">Python</span>
+                        <span class="px-3 py-1.5 bg-cyan-500/10 rounded-full text-xs font-medium text-cyan-600 dark:text-cyan-400">React</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 项目展示 -->
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">个人项目</h2>
+                <a href="https://github.com/alphazx?tab=repositories" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-primary hover:text-primary text-gray-600 dark:text-gray-300 rounded-full text-sm transition-colors">
+                    <span>查看更多</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- 项目1 -->
+                <div class="project-card bg-white dark:bg-gray-900 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700/50 shadow-sm hover:shadow-md">
+                    <div class="h-36 bg-gradient-to-br from-gray-50 to-gray-100/50 dark:from-gray-700/30 dark:to-gray-600/20 flex items-center justify-center">
+                        <i class="fas fa-robot text-4xl text-primary/40 group-hover:text-primary/60 transition-colors"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-bold">AI IDE 插件</h3>
+                            <div class="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-star text-yellow-500"></i>
+                                <span>42</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">基于LLM的智能代码辅助工具，提供代码补全、重构建议等功能。</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">TypeScript</span>
+                            <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">VS Code API</span>
+                            <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">OpenAI</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400">
+                            <span>2026-03-01</span>
+                            <a href="#" class="hover:text-primary">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 项目2 -->
+                <div class="project-card bg-white dark:bg-gray-900 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700/50 shadow-sm hover:shadow-md">
+                    <div class="h-36 bg-gradient-to-br from-gray-50 to-gray-100/50 dark:from-gray-700/30 dark:to-gray-600/20 flex items-center justify-center">
+                        <i class="fas fa-comments text-4xl text-primary/40 group-hover:text-primary/60 transition-colors"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-bold">数字分身聊天</h3>
+                            <div class="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-star text-yellow-500"></i>
+                                <span>28</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">个人主页的智能问答系统，可以回答关于我的各种问题。</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">JavaScript</span>
+                            <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">Tailwind CSS</span>
+                            <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">LLM</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400">
+                            <span>2026-03-10</span>
+                            <a href="#" class="hover:text-primary">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 数字分身聊天区 -->
+        <section id="chat" class="mb-24">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-100">数字分身</h2>
+                <p class="text-gray-500 dark:text-gray-400">问我任何问题，我会实时回答你</p>
+            </div>
+            <div class="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700/50 shadow-sm">
+                <!-- 聊天头部 -->
+                <div class="bg-gradient-to-r from-primary to-primary-dark p-4 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white font-bold text-sm shadow-inner">
+                        A
+                    </div>
+                    <div class="text-white">
+                        <div class="font-semibold">AlphaZx 数字分身</div>
+                        <div class="text-xs text-white/80">在线</div>
+                    </div>
+                </div>
+                
+                <!-- 聊天消息区 -->
+                <div id="chatMessages" class="h-[360px] overflow-y-auto p-5 space-y-4 bg-gray-50/50 dark:bg-gray-900">
+                    <!-- 欢迎消息 -->
+                    <div class="chat-message flex gap-3">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-primary-dark flex-shrink-0 flex items-center justify-center text-white text-xs font-bold">
+                            A
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 rounded-2xl rounded-tl-none px-4 py-3 max-w-[80%] shadow-sm">
+                            <p class="text-gray-800 dark:text-gray-200 text-sm leading-relaxed">你好！我是 AlphaZx 的数字分身。试试问我：</p>
+                            <ul class="mt-2 text-xs text-gray-500 dark:text-gray-400 space-y-1">
+                                <li>• 最近在做什么？</li>
+                                <li>• 怎么联系我？</li>
+                                <li>• 有哪些作品？</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 输入区 -->
+                <div class="p-5 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+                    <div class="flex gap-3">
+                        <input 
+                            type="text" 
+                            id="chatInput" 
+                            placeholder="输入你的问题..." 
+                            class="flex-1 px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-700/50 border-0 focus:ring-2 focus:ring-primary/50 outline-none text-gray-800 dark:text-gray-200 text-sm"
+                        >
+                        <button 
+                            id="sendBtn" 
+                            class="w-11 h-11 bg-gradient-to-br from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white rounded-full transition-all flex items-center justify-center shadow-md shadow-primary/30"
+                        >
+                            <i class="fas fa-paper-plane text-sm"></i>
+                        </button>
+                    </div>
+                    <div class="mt-3 flex flex-wrap gap-2">
+                        <button class="quick-question px-3 py-1.5 bg-gray-100 dark:bg-gray-700/50 hover:bg-primary/10 hover:text-primary rounded-full text-xs transition-colors text-gray-600 dark:text-gray-300" data-question="最近在做什么？">
+                            最近在做什么？
+                        </button>
+                        <button class="quick-question px-3 py-1.5 bg-gray-100 dark:bg-gray-700/50 hover:bg-primary/10 hover:text-primary rounded-full text-xs transition-colors text-gray-600 dark:text-gray-300" data-question="怎么联系我？">
+                            怎么联系我？
+                        </button>
+                        <button class="quick-question px-3 py-1.5 bg-gray-100 dark:bg-gray-700/50 hover:bg-primary/10 hover:text-primary rounded-full text-xs transition-colors text-gray-600 dark:text-gray-300" data-question="有哪些作品？">
+                            有哪些作品？
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 py-12">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <!-- 关于我 -->
+                <div class="md:col-span-2">
+                    <h3 class="font-bold text-lg mb-4 text-gray-900 dark:text-gray-100">关于我</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-4">
+                        我是 AlphaZx，一个专注于 LLM 应用开发与 IDE 工具链的软件工程师。致力于用 AI 提升开发效率，探索 Vibe Coding 的新方式。
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="mailto:contact@alphazx.dev" class="text-gray-500 dark:text-gray-400 hover:text-primary transition-colors">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="#" class="text-gray-500 dark:text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-weixin"></i>
+                        </a>
+                        <a href="https://github.com/alphazx" target="_blank" class="text-gray-500 dark:text-gray-400 hover:text-primary transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 友链 -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-gray-900 dark:text-gray-100">友链</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="https://github.com/alphazx" target="_blank" class="text-gray-500 dark:text-gray-400 hover:text-primary transition-colors">GitHub</a></li>
+                        <li><a href="#" class="text-gray-500 dark:text-gray-400 hover:text-primary transition-colors">个人博客</a></li>
+                        <li><a href="#" class="text-gray-500 dark:text-gray-400 hover:text-primary transition-colors">技术社区</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-200 dark:border-gray-700/50 text-center">
+                <p class="text-gray-500 dark:text-gray-400 text-sm">
+                    © 2026 AlphaZx (丛继晔). Built with Vibe Coding.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
