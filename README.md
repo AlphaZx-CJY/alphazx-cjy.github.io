@@ -7,7 +7,7 @@
 
 🔗 **在线访问**: [https://alphazx-cjy.github.io](https://alphazx-cjy.github.io)
 
-![预览](https://via.placeholder.com/800x400/15CE58/ffffff?text=AlphaZx+Portfolio)
+![预览](preview.png)
 
 ## ✨ 特性
 
