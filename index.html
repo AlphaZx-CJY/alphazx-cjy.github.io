@@ -1,436 +1,358 @@
 <!DOCTYPE html>
-<html lang="zh-CN" class="scroll-smooth">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AlphaZx - 丛继晔 | 个人主页</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#15CE58',
-                        'primary-dark': '#0FA847',
-                    }
-                }
-            }
-        }
-    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .gradient-text {
-            background: linear-gradient(135deg, #15CE58 0%, #0FA847 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .chat-message {
-            animation: fadeIn 0.3s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .typing-dot {
-            animation: typing 1.4s infinite ease-in-out both;
-        }
-        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
-        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
-        @keyframes typing {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1); }
-        }
-        .project-card {
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-        .project-card:hover {
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1), 0 4px 10px -2px rgba(0, 0, 0, 0.05);
-        }
-        .dark .project-card {
-            background: rgba(17, 24, 39, 0.7);
-        }
-        .about-card {
-            transition: all 0.3s ease;
-        }
-        .about-card:hover {
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-        }
-        body {
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .timeline-item {
-            position: relative;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -24px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background-color: #e5e7eb;
-        }
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: -30px;
-            top: 8px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #15CE58;
-        }
-        .timeline-item:last-child::before {
-            height: 8px;
-        }
-
-        .skill-item {
-            transition: all 0.2s ease;
-        }
-        .skill-item:hover {
-            transform: translateX(4px);
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+<body>
     <!-- 导航栏 -->
-    <nav class="fixed top-0 w-full bg-white/70 dark:bg-gray-900/70 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50 z-50">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="fixed top-0 w-full z-50 nav-simple">
+        <div class="max-w-5xl mx-auto px-6">
             <div class="flex justify-between items-center h-16">
-                <div class="font-bold text-xl gradient-text">AlphaZx</div>
-                <div class="flex items-center gap-4">
-                    <button id="themeToggle" class="p-2 rounded-lg hover:bg-gray-100/50 dark:hover:bg-gray-800/50 transition-colors">
-                        <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
-                        <i class="fas fa-moon text-blue-400 hidden dark:block"></i>
-                    </button>
-                </div>
+                <a href="#" class="text-xl font-bold text-accent">AlphaZx</a>
+                <button id="themeToggle" class="theme-toggle" aria-label="切换主题">
+                    <i class="fas fa-sun text-amber-500 dark:hidden"></i>
+                    <i class="fas fa-moon text-sky-400 hidden dark:block"></i>
+                </button>
             </div>
         </div>
     </nav>
 
     <!-- 主要内容 -->
-    <main class="pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <!-- 首屏：个人资料 + 欢迎语 -->
-        <section class="min-h-[calc(100vh-6rem)] flex items-center justify-center mb-20">
-            <div class="text-center">
-                <!-- 欢迎语 -->
-                <div class="mb-6">
-                    <span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300">
-                        👋 欢迎来到我的个人主页
-                    </span>
-                </div>
-                
-                <!-- 头像 -->
-                <div class="relative inline-block mb-8">
-                    <div class="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-white text-5xl font-bold shadow-xl shadow-primary/20">
-                        A
-                    </div>
-                    <div class="absolute bottom-2 right-2 w-6 h-6 bg-primary rounded-full border-4 border-white dark:border-gray-900 shadow-md"></div>
-                </div>
-                
-                <!-- 名字和职业 -->
-                <div class="mb-6">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-2 tracking-tight text-gray-900 dark:text-gray-100">
-                        AlphaZx
-                    </h1>
-                    <p class="text-lg text-gray-500 dark:text-gray-400 mb-2">丛继晔</p>
-                    <p class="text-xl text-gray-600 dark:text-gray-300 font-medium">
-                        软件工程师 · AI 工具开发者
-                    </p>
-                </div>
-                
-                <!-- 简介 -->
-                <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed">
-                    专注于 LLM 应用开发与 IDE 工具链，致力于用 AI 提升开发效率
-                </p>
-                
-                <!-- 联系方式 -->
-                <div class="flex flex-wrap justify-center gap-4 mb-10">
-                    <a href="mailto:congjiye@outlook.com" class="w-12 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary/10 dark:hover:bg-primary/20 hover:border-primary hover:text-primary transition-colors">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <button onclick="showWeixin()" class="w-12 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary/10 dark:hover:bg-primary/20 hover:border-primary hover:text-primary transition-colors" title="点击查看微信号">
-                            <i class="fab fa-weixin"></i>
-                        </button>
-                        <a href="https://github.com/AlphaZx-CJY" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary/10 dark:hover:bg-primary/20 hover:border-primary hover:text-primary transition-colors">
-                            <i class="fab fa-github"></i>
-                        </a>
-                </div>
-                
-                <!-- 核心标签 -->
-                <div class="flex flex-wrap justify-center gap-2 mb-12">
-                    <span class="px-3 py-1.5 bg-primary/10 dark:bg-primary/20 rounded-full text-xs font-medium text-primary">
-                        Vibe Coding
-                    </span>
-                    <span class="px-3 py-1.5 bg-blue-500/10 dark:bg-blue-500/20 rounded-full text-xs font-medium text-blue-500">
-                        AI 工具链
-                    </span>
-                    <span class="px-3 py-1.5 bg-amber-500/10 dark:bg-amber-500/20 rounded-full text-xs font-medium text-amber-500">
-                        LLM 应用
-                    </span>
-                </div>
-                
-                <!-- 聊天入口 -->
-                <a href="#chat" class="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-primary to-primary-dark text-white rounded-full font-medium shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all transform hover:-translate-y-0.5">
-                    <i class="fas fa-comments"></i>
-                    <span>与数字分身聊聊</span>
-                    <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                </a>
-            </div>
-        </section>
-
-        <!-- 内容区：关于我 + 项目展示 -->
-        <section class="mb-24">
-            <div class="mb-8">
-                <h2 class="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-100">关于我</h2>
-                <p class="text-gray-500 dark:text-gray-400">喜欢地理，喜欢将复杂的东西简单化</p>
-            </div>
+    <main class="pt-24 pb-16 px-6">
+        <div class="max-w-3xl mx-auto">
             
-            <div class="about-card bg-white dark:bg-gray-900 rounded-2xl p-6 md:p-8 border border-gray-200 dark:border-gray-700/50 shadow-md hover:shadow-lg transition-all mb-12">
-                <!-- 基本信息 -->
-                <div class="flex items-center gap-4 mb-8 pb-6 border-b border-gray-200 dark:border-gray-700/50">
-                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-white text-2xl font-bold shadow-lg">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100">丛继晔</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">软件工程师 · 上海</p>
-                        <div class="flex gap-2 mt-2">
-                            <span class="px-2 py-0.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs">AI 工具链</span>
-                            <span class="px-2 py-0.5 bg-blue-500/10 dark:bg-blue-500/20 text-blue-500 rounded-full text-xs">IDE 开发</span>
-                            <span class="px-2 py-0.5 bg-purple-500/10 dark:bg-purple-500/20 text-purple-500 rounded-full text-xs">Vibe Coding</span>
+            <!-- Hero -->
+            <section class="py-16 text-center reveal">
+                <div class="avatar-simple mx-auto mb-6">A</div>
+                <h1 class="text-3xl font-bold mb-2">AlphaZx <span class="text-secondary text-xl font-normal">丛继晔</span></h1>
+                <p class="text-secondary mb-4">软件工程师 · AI 工具开发者</p>
+                <p class="text-muted mb-8">喜欢地理，喜欢将复杂的东西简单化</p>
+                
+                <div class="flex justify-center gap-3 mb-8">
+                    <a href="mailto:congjiye@outlook.com" class="social-link" title="邮箱">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <button onclick="showWeixin()" class="social-link" title="微信">
+                        <i class="fab fa-weixin"></i>
+                    </button>
+                    <a href="https://github.com/AlphaZx-CJY" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-2">
+                    <span class="tag">Vibe Coding</span>
+                    <span class="tag">AI 工具链</span>
+                    <span class="tag">LLM 应用</span>
+                </div>
+            </section>
+
+            <!-- 关于我 -->
+            <section id="about" class="py-12 reveal">
+                <h2 class="section-title">关于我</h2>
+                <div class="card p-6 mb-8">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-lg bg-accent text-white flex items-center justify-center text-lg">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold">丛继晔</h3>
+                            <p class="text-sm text-muted">软件工程师 · 上海</p>
                         </div>
                     </div>
-                </div>
-
-                <!-- 个人经历时间线 -->
-                <div class="relative">
-                    <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-purple-500 to-gray-200 dark:to-gray-700"></div>
                     
-                    <!-- 华为 OD -->
-                    <div class="relative pl-12 pb-8">
-                        <div class="absolute left-2 top-1 w-4 h-4 rounded-full bg-primary border-4 border-white dark:border-gray-900 shadow-md"></div>
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mb-2">
-                            <h4 class="text-base font-bold text-gray-900 dark:text-gray-100">华为 OD</h4>
-                            <span class="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded-full">2021 至今 · 上海</span>
-                        </div>
-                        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-3">负责 DevEco Studio 亮点特性开发，主要包括：</p>
-                        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-primary text-xs mt-1.5"></i>
-                                <span><strong>低代码平台</strong> — 提供可视化拖拽式 UI 构建能力</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-primary text-xs mt-1.5"></i>
-                                <span><strong>UI 生成</strong> — 将安卓 XML 自动转换为鸿蒙页面</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-primary text-xs mt-1.5"></i>
-                                <span><strong>智慧化调优</strong> — 使用 AI 能力分析调优数据，自动识别问题并提供解决方案</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-primary text-xs mt-1.5"></i>
-                                <span><strong>UI 意图识别</strong> — 智能解析用户设计意图，提升开发体验</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- 北京华宇软件 -->
-                    <div class="relative pl-12 pb-8">
-                        <div class="absolute left-2 top-1 w-4 h-4 rounded-full bg-purple-500 border-4 border-white dark:border-gray-900 shadow-md"></div>
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mb-2">
-                            <h4 class="text-base font-bold text-gray-900 dark:text-gray-100">北京华宇软件股份有限公司</h4>
-                            <span class="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded-full">2019 - 2021</span>
-                        </div>
-                        
-                        <!-- 语音识别项目 -->
-                        <div class="mb-4 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200/50 dark:border-gray-700/30">
-                            <h5 class="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2 flex items-center gap-2">
-                                <i class="fas fa-microphone-alt text-purple-500"></i>
-                                语音识别项目
-                            </h5>
-                            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-2">基于 <strong>Kaldi</strong> 框架开发的法庭语音识别系统，成功在吉林市人民法院落地使用。系统支持：</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-2 py-1 bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded text-xs">自学习能力</span>
-                                <span class="px-2 py-1 bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded text-xs">热词动态加载</span>
-                                <span class="px-2 py-1 bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded text-xs">流式识别</span>
+                    <!-- 时间线 -->
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="flex flex-wrap items-center gap-2 mb-2">
+                                <h4 class="font-semibold">华为 OD</h4>
+                                <span class="text-xs text-muted bg-secondary px-2 py-0.5 rounded">2021 至今 · 上海</span>
                             </div>
-                        </div>
-
-                        <!-- 姿态识别项目 -->
-                        <div class="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200/50 dark:border-gray-700/30">
-                            <h5 class="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2 flex items-center gap-2">
-                                <i class="fas fa-walking text-purple-500"></i>
-                                姿态识别项目
-                            </h5>
-                            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-2">监狱场景下的危险动作实时检测系统，基于 <strong>STGCN + OpenPose</strong> 实现，支持多种姿态实时识别与报警：</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-2 py-1 bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded text-xs">长时间举手</span>
-                                <span class="px-2 py-1 bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded text-xs">下蹲</span>
-                                <span class="px-2 py-1 bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded text-xs">站立</span>
-                                <span class="px-2 py-1 bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded text-xs">摔倒</span>
-                                <span class="px-2 py-1 bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded text-xs">殴打</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 教育背景 -->
-                    <div class="relative pl-12">
-                        <div class="absolute left-2 top-1 w-4 h-4 rounded-full bg-gray-400 border-4 border-white dark:border-gray-900 shadow-md"></div>
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mb-2">
-                            <h4 class="text-base font-bold text-gray-900 dark:text-gray-100">杭州电子科技大学</h4>
-                            <span class="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded-full">2015 - 2019 · 本科</span>
-                        </div>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">软件工程专业</p>
-                    </div>
-                </div>
-
-                <!-- 技能标签 -->
-                <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700/50">
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1.5 bg-blue-500/10 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 rounded-full text-xs font-medium">TypeScript</span>
-                        <span class="px-3 py-1.5 bg-orange-500/10 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 rounded-full text-xs font-medium">Java</span>
-                        <span class="px-3 py-1.5 bg-green-500/10 dark:bg-green-500/20 text-green-600 dark:text-green-400 rounded-full text-xs font-medium">Python</span>
-                        <span class="px-3 py-1.5 bg-purple-500/10 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400 rounded-full text-xs font-medium">AI 应用</span>
-                        <span class="px-3 py-1.5 bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 rounded-full text-xs font-medium">IDE 开发</span>
-                        <span class="px-3 py-1.5 bg-pink-500/10 dark:bg-pink-500/20 text-pink-600 dark:text-pink-400 rounded-full text-xs font-medium">LLM</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 项目展示 -->
-            <div class="flex items-center justify-between mb-8">
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">个人项目</h2>
-                <a href="https://github.com/AlphaZx-CJY?tab=repositories" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-primary hover:text-primary text-gray-600 dark:text-gray-300 rounded-full text-sm transition-colors">
-                    <span>查看更多</span>
-                    <i class="fas fa-arrow-right text-xs"></i>
-                </a>
-            </div>
-            
-            <!-- GitHub 项目列表 -->
-            <div id="github-pinned-projects" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                <!-- 动态加载的项目将显示在这里 -->
-                <div class="project-card bg-white dark:bg-gray-900 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700/50 shadow-sm p-6 text-center">
-                    <i class="fas fa-spinner fa-spin text-2xl text-primary/60"></i>
-                    <p class="mt-2 text-sm text-gray-500">加载中...</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 数字分身聊天区 -->
-        <section id="chat" class="mb-24">
-            <div class="mb-8">
-                <h2 class="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-100">数字分身</h2>
-                <p class="text-gray-500 dark:text-gray-400">问我任何问题，我会实时回答你</p>
-            </div>
-            <div class="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700/50 shadow-sm">
-                <!-- 聊天头部 -->
-                <div class="bg-gradient-to-r from-primary to-primary-dark p-4 flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white font-bold text-sm shadow-inner">
-                        A
-                    </div>
-                    <div class="text-white">
-                        <div class="font-semibold">AlphaZx 数字分身</div>
-                        <div class="text-xs text-white/80">在线</div>
-                    </div>
-                </div>
-                
-                <!-- 聊天消息区 -->
-                <div id="chatMessages" class="h-[360px] overflow-y-auto p-5 space-y-4 bg-gray-50/50 dark:bg-gray-900">
-                    <!-- 欢迎消息 -->
-                    <div class="chat-message flex gap-3">
-                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-primary-dark flex-shrink-0 flex items-center justify-center text-white text-xs font-bold">
-                            A
-                        </div>
-                        <div class="bg-white dark:bg-gray-800 rounded-2xl rounded-tl-none px-4 py-3 max-w-[80%] shadow-sm">
-                            <p class="text-gray-800 dark:text-gray-200 text-sm leading-relaxed">你好！我是 AlphaZx 的数字分身。试试问我：</p>
-                            <ul class="mt-2 text-xs text-gray-500 dark:text-gray-400 space-y-1">
-                                <li>• 最近在做什么？</li>
-                                <li>• 怎么联系我？</li>
-                                <li>• 有哪些作品？</li>
+                            <p class="text-sm text-secondary mb-3">负责 DevEco Studio 亮点特性开发</p>
+                            <ul class="space-y-2 text-sm text-secondary">
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-check text-accent text-xs mt-1"></i>
+                                    <span><strong>低代码平台</strong> — 可视化拖拽式 UI 构建</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-check text-accent text-xs mt-1"></i>
+                                    <span><strong>UI 生成</strong> — 安卓 XML 自动转换为鸿蒙页面</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-check text-accent text-xs mt-1"></i>
+                                    <span><strong>智慧化调优</strong> — AI 分析调优数据，自动识别问题</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fas fa-check text-accent text-xs mt-1"></i>
+                                    <span><strong>UI 意图识别</strong> — 智能解析用户设计意图</span>
+                                </li>
                             </ul>
                         </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot" style="background: #f59e0b;"></div>
+                            <div class="flex flex-wrap items-center gap-2 mb-2">
+                                <h4 class="font-semibold">北京华宇软件股份有限公司</h4>
+                                <span class="text-xs text-muted bg-secondary px-2 py-0.5 rounded">2019 - 2021</span>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <div class="p-3 rounded-md bg-secondary/50">
+                                    <h5 class="text-sm font-medium mb-1 flex items-center gap-2">
+                                        <i class="fas fa-microphone-alt text-amber-500"></i>
+                                        语音识别项目
+                                    </h5>
+                                    <p class="text-sm text-secondary">基于 Kaldi 框架，吉林市人民法院落地。支持自学习、热词加载、流式识别。</p>
+                                </div>
+                                
+                                <div class="p-3 rounded-md bg-secondary/50">
+                                    <h5 class="text-sm font-medium mb-1 flex items-center gap-2">
+                                        <i class="fas fa-walking text-amber-500"></i>
+                                        姿态识别项目
+                                    </h5>
+                                    <p class="text-sm text-secondary">基于 STGCN + OpenPose，监狱场景实时检测。支持举手、下蹲、摔倒、殴打等姿态。</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot" style="background: #6b7280;"></div>
+                            <div class="flex flex-wrap items-center gap-2 mb-1">
+                                <h4 class="font-semibold">杭州电子科技大学</h4>
+                                <span class="text-xs text-muted bg-secondary px-2 py-0.5 rounded">2015 - 2019 · 本科</span>
+                            </div>
+                            <p class="text-sm text-secondary">软件工程专业</p>
+                        </div>
                     </div>
+                    
+                    <!-- 技能标签 -->
+                    <div class="mt-6 pt-6 border-t border-border">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag-secondary px-3 py-1.5 text-sm">TypeScript</span>
+                            <span class="tag-secondary px-3 py-1.5 text-sm">Java</span>
+                            <span class="tag-secondary px-3 py-1.5 text-sm">Python</span>
+                            <span class="tag-secondary px-3 py-1.5 text-sm">AI 应用</span>
+                            <span class="tag-secondary px-3 py-1.5 text-sm">IDE 开发</span>
+                            <span class="tag-secondary px-3 py-1.5 text-sm">LLM</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 工具箱 -->
+            <section class="py-12 reveal">
+                <h2 class="section-title">工具箱</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" class="card p-4 flex items-center gap-3 tool-link">
+                        <div class="tool-icon bg-blue-500/10 text-blue-500">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div>
+                            <div class="font-medium text-primary text-sm">VS Code</div>
+                            <div class="text-xs text-muted">主力编辑器</div>
+                        </div>
+                    </a>
+                    <a href="https://cursor.sh/" target="_blank" rel="noopener noreferrer" class="card p-4 flex items-center gap-3 tool-link">
+                        <div class="tool-icon bg-emerald-500/10 text-emerald-500">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                        <div>
+                            <div class="font-medium text-primary text-sm">Cursor</div>
+                            <div class="text-xs text-muted">AI 编辑器</div>
+                        </div>
+                    </a>
+                    <a href="https://www.jetbrains.com/idea/" target="_blank" rel="noopener noreferrer" class="card p-4 flex items-center gap-3 tool-link">
+                        <div class="tool-icon bg-orange-500/10 text-orange-500">
+                            <i class="fab fa-java"></i>
+                        </div>
+                        <div>
+                            <div class="font-medium text-primary text-sm">IntelliJ IDEA</div>
+                            <div class="text-xs text-muted">Java 开发</div>
+                        </div>
+                    </a>
+                    <a href="https://github.com/features/copilot" target="_blank" rel="noopener noreferrer" class="card p-4 flex items-center gap-3 tool-link">
+                        <div class="tool-icon bg-indigo-500/10 text-indigo-500">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div>
+                            <div class="font-medium text-primary text-sm">GitHub Copilot</div>
+                            <div class="text-xs text-muted">AI 编码助手</div>
+                        </div>
+                    </a>
+                    <a href="https://kimi.moonshot.cn/" target="_blank" rel="noopener noreferrer" class="card p-4 flex items-center gap-3 tool-link">
+                        <div class="tool-icon bg-purple-500/10 text-purple-500">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div>
+                            <div class="font-medium text-primary text-sm">Kimi / Kimi CLI</div>
+                            <div class="text-xs text-muted">AI 助手</div>
+                        </div>
+                    </a>
+                    <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer" class="card p-4 flex items-center gap-3 tool-link">
+                        <div class="tool-icon bg-gray-500/10 text-gray-500">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div>
+                            <div class="font-medium text-primary text-sm">Git</div>
+                            <div class="text-xs text-muted">版本控制</div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- 项目展示 -->
+            <section id="projects" class="py-12 reveal">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="section-title" style="margin-bottom: 0;">个人项目</h2>
+                    <a href="https://github.com/AlphaZx-CJY?tab=repositories" target="_blank" rel="noopener noreferrer" class="text-sm text-secondary hover:text-accent transition-colors">
+                        查看更多 <i class="fas fa-arrow-right text-xs ml-1"></i>
+                    </a>
                 </div>
                 
-                <!-- 输入区 -->
-                <div class="p-5 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
-                    <div class="flex gap-3">
-                        <input 
-                            type="text" 
-                            id="chatInput" 
-                            placeholder="输入你的问题..." 
-                            class="flex-1 px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-700/50 border-0 focus:ring-2 focus:ring-primary/50 outline-none text-gray-800 dark:text-gray-200 text-sm"
-                        >
-                        <button 
-                            id="sendBtn" 
-                            class="w-11 h-11 bg-gradient-to-br from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white rounded-full transition-all flex items-center justify-center shadow-md shadow-primary/30"
-                        >
-                            <i class="fas fa-paper-plane text-sm"></i>
-                        </button>
-                    </div>
-                    <div class="mt-3 flex flex-wrap gap-2">
-                        <button class="quick-question px-3 py-1.5 bg-gray-100 dark:bg-gray-700/50 hover:bg-primary/10 hover:text-primary rounded-full text-xs transition-colors text-gray-600 dark:text-gray-300" data-question="最近在做什么？">
-                            最近在做什么？
-                        </button>
-                        <button class="quick-question px-3 py-1.5 bg-gray-100 dark:bg-gray-700/50 hover:bg-primary/10 hover:text-primary rounded-full text-xs transition-colors text-gray-600 dark:text-gray-300" data-question="怎么联系我？">
-                            怎么联系我？
-                        </button>
-                        <button class="quick-question px-3 py-1.5 bg-gray-100 dark:bg-gray-700/50 hover:bg-primary/10 hover:text-primary rounded-full text-xs transition-colors text-gray-600 dark:text-gray-300" data-question="有哪些作品？">
-                            有哪些作品？
-                        </button>
+                <div id="github-pinned-projects" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="card p-6 text-center">
+                        <i class="fas fa-spinner fa-spin text-accent/60"></i>
+                        <p class="mt-2 text-sm text-muted">加载中...</p>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <!-- 坐标 -->
+            <section class="py-12 reveal">
+                <h2 class="section-title">坐标</h2>
+                <div class="location-card">
+                    <div class="flex flex-col sm:flex-row items-center gap-6 relative z-10">
+                        <div class="w-20 h-20 rounded-full bg-accent/10 text-accent flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-map-marker-alt text-3xl"></i>
+                        </div>
+                        <div class="text-center sm:text-left">
+                            <div class="coord-display">
+                                N31°14' E121°29'
+                            </div>
+                            <div class="text-secondary mb-2">中国 · 上海</div>
+                            <p class="text-sm text-muted">
+                                喜欢地理，喜欢研究不同地方的文化和地理特征。每个坐标都代表着一个独特的故事。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-border">
+                        <div class="flex flex-wrap gap-2 justify-center sm:justify-start">
+                            <span class="tag-secondary px-3 py-1 text-xs">软件工程师</span>
+                            <span class="tag-secondary px-3 py-1 text-xs">华为OD</span>
+                            <span class="tag-secondary px-3 py-1 text-xs">DevEco Studio</span>
+                            <span class="tag-secondary px-3 py-1 text-xs">AI 工具链</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
     </main>
 
-    <!-- 页脚 -->
-    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 py-12">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                <!-- 关于我 -->
-                <div class="md:col-span-2">
-                    <h3 class="font-bold text-lg mb-4 text-gray-900 dark:text-gray-100">关于我</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-4">
-                        我是 AlphaZx，一个专注于 LLM 应用开发与 IDE 工具链的软件工程师。致力于用 AI 提升开发效率，探索 Vibe Coding 的新方式。
-                    </p>
-                    <div class="flex gap-4">
-                        <a href="mailto:congjiye@outlook.com" class="text-gray-500 dark:text-gray-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary p-2 rounded-lg transition-colors">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <button onclick="showWeixin()" class="text-gray-500 dark:text-gray-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary p-2 rounded-lg transition-colors" title="点击查看微信号">
-                            <i class="fab fa-weixin"></i>
-                        </button>
-                        <a href="https://github.com/AlphaZx-CJY" target="_blank" rel="noopener noreferrer" class="text-gray-500 dark:text-gray-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary p-2 rounded-lg transition-colors">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- 友链 -->
-                <div>
-                    <h3 class="font-bold text-lg mb-4 text-gray-900 dark:text-gray-100">友链</h3>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="https://github.com/AlphaZx-CJY" target="_blank" class="text-gray-500 dark:text-gray-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary p-1.5 rounded transition-colors">GitHub</a></li>
-                        <li><a href="https://blog.csdn.net/weixin_40448140" target="_blank" rel="noopener noreferrer" class="text-gray-500 dark:text-gray-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary p-1.5 rounded transition-colors">个人博客</a></li>
-                        <li><a href="#" class="text-gray-500 dark:text-gray-400 hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary p-1.5 rounded transition-colors">技术社区</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="pt-8 border-t border-gray-200 dark:border-gray-700/50 text-center">
-                <p class="text-gray-500 dark:text-gray-400 text-sm">
-                    © 2026 AlphaZx (丛继晔). Built with Vibe Coding.
+    <!-- 页脚 - 简洁设计 -->
+    <footer class="footer-simple">
+        <div class="max-w-3xl mx-auto px-6 py-6">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-muted">
+                    © 2026 AlphaZx · Built with Vibe Coding
                 </p>
+                <div class="flex items-center gap-4">
+                    <a href="https://blog.csdn.net/weixin_40448140" target="_blank" rel="noopener noreferrer" class="footer-link" title="CSDN博客">
+                        <i class="fas fa-blog text-xs"></i>
+                    </a>
+                    <a href="mailto:congjiye@outlook.com" class="footer-link" title="邮箱">
+                        <i class="fas fa-envelope text-xs"></i>
+                    </a>
+                    <button onclick="showWeixin()" class="footer-link" title="微信">
+                        <i class="fab fa-weixin text-xs"></i>
+                    </button>
+                    <a href="https://github.com/AlphaZx-CJY" target="_blank" rel="noopener noreferrer" class="footer-link" title="GitHub">
+                        <i class="fab fa-github text-xs"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </footer>
+
+    <!-- 悬浮按钮（聊天/返回顶部整合） -->
+    <div class="fab-container">
+        <button id="backToTopBtn" class="fab-secondary" aria-label="返回顶部" title="返回顶部">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button id="chatFloatBtn" class="fab-primary" aria-label="打开数字分身聊天" title="数字分身">
+            <i class="fas fa-comments"></i>
+        </button>
+    </div>
+
+    <!-- 聊天窗口 -->
+    <div id="chatWindow" class="chat-window">
+        <div class="chat-header">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-sm font-bold">A</div>
+                <div>
+                    <div class="font-medium text-sm">AlphaZx 数字分身</div>
+                    <div class="text-xs text-white/80 flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 bg-green-300 rounded-full"></span>
+                        在线
+                    </div>
+                </div>
+            </div>
+            <button id="chatCloseBtn" class="w-8 h-8 rounded-full hover:bg-white/20 flex items-center justify-center transition-colors">
+                <i class="fas fa-times text-sm"></i>
+            </button>
+        </div>
+        
+        <div id="chatMessages" class="chat-messages">
+            <div class="message">
+                <div class="message-avatar message-avatar-bot">A</div>
+                <div class="message-content message-content-bot">
+                    <p>你好！我是 AlphaZx 的数字分身。试试问我：</p>
+                    <ul class="mt-2 text-xs text-muted space-y-1">
+                        <li>• 最近在做什么？</li>
+                        <li>• 怎么联系我？</li>
+                        <li>• 有哪些作品？</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-input-area">
+            <div class="flex gap-2">
+                <input type="text" id="chatInput" placeholder="输入你的问题..." class="chat-input">
+                <button id="sendBtn" class="chat-send-btn">
+                    <i class="fas fa-paper-plane text-sm"></i>
+                </button>
+            </div>
+            <div class="mt-3 flex flex-wrap gap-2">
+                <button class="quick-q" data-question="最近在做什么？">最近在做什么？</button>
+                <button class="quick-q" data-question="怎么联系我？">怎么联系我？</button>
+                <button class="quick-q" data-question="有哪些作品？">有哪些作品？</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 微信模态框 -->
+    <div id="weixinModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="w-14 h-14 mx-auto mb-4 bg-green-500/10 rounded-full flex items-center justify-center">
+                <i class="fab fa-weixin text-2xl text-green-500"></i>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">添加微信好友</h3>
+            <p class="text-sm text-muted mb-4">扫码或搜索微信号添加好友</p>
+            <div class="bg-secondary rounded-lg p-4 mb-5">
+                <p class="text-xl font-mono font-bold tracking-wider">15968182684</p>
+            </div>
+            <button onclick="closeWeixin()" class="w-full py-2.5 bg-accent hover:bg-accent-dark text-white rounded-lg font-medium transition-colors">
+                知道了
+            </button>
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>
