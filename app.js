@@ -1,5 +1,31 @@
 // AlphaZx - Clean & Minimal Portfolio
 
+// 节流工具函数
+function throttle(fn, wait) {
+    let lastTime = 0;
+    return function(...args) {
+        const now = Date.now();
+        if (now - lastTime >= wait) {
+            lastTime = now;
+            fn.apply(this, args);
+        }
+    };
+}
+
+// 带超时的 fetch 封装
+async function fetchWithTimeout(url, options = {}, timeout = 5000) {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeout);
+    try {
+        const response = await fetch(url, { ...options, signal: controller.signal });
+        clearTimeout(id);
+        return response;
+    } catch (error) {
+        clearTimeout(id);
+        throw error;
+    }
+}
+
 // 数字分身聊天系统
 class DigitalAvatar {
     constructor() {
@@ -278,6 +304,7 @@ function initTheme() {
     
     themeToggle.addEventListener('click', () => {
         html.classList.toggle('dark');
+        window.dispatchEvent(new Event('themechange'));
     });
 }
 
@@ -299,13 +326,15 @@ function initBackToTop() {
     const backToTopBtn = document.getElementById('backToTopBtn');
     if (!backToTopBtn) return;
     
-    window.addEventListener('scroll', () => {
+    const handleScroll = throttle(() => {
         if (window.scrollY > 300) {
             backToTopBtn.classList.add('visible');
         } else {
             backToTopBtn.classList.remove('visible');
         }
-    });
+    }, 100);
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
     
     backToTopBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -327,21 +356,15 @@ class GitHubContributions {
         this.observeThemeChange();
     }
     
-    // 观察主题变化，自动切换热力图颜色
+    // 监听主题变化事件，自动切换热力图颜色
     observeThemeChange() {
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.attributeName === 'class') {
-                    const isDark = document.documentElement.classList.contains('dark');
-                    if (this.isDark !== isDark) {
-                        this.isDark = isDark;
-                        this.renderChart();
-                    }
-                }
-            });
+        window.addEventListener('themechange', () => {
+            const isDark = document.documentElement.classList.contains('dark');
+            if (this.isDark !== isDark) {
+                this.isDark = isDark;
+                this.renderChart();
+            }
         });
-        
-        observer.observe(document.documentElement, { attributes: true });
     }
     
     // 获取热力图颜色主题
@@ -434,7 +457,7 @@ class GitHubProjects {
     
     async fetchPinnedRepos() {
         try {
-            const response = await fetch(`https://gh-pinned-repos.egoist.dev/?username=${this.username}`);
+            const response = await fetchWithTimeout(`https://gh-pinned-repos.egoist.dev/?username=${this.username}`, {}, 5000);
             if (!response.ok) throw new Error('获取失败');
             const data = await response.json();
             
@@ -455,7 +478,7 @@ class GitHubProjects {
     
     async fetchTopRepos() {
         try {
-            const response = await fetch(`https://api.github.com/users/${this.username}/repos?sort=updated&per_page=6`);
+            const response = await fetchWithTimeout(`https://api.github.com/users/${this.username}/repos?sort=updated&per_page=6`, {}, 5000);
             if (!response.ok) throw new Error('获取失败');
             const data = await response.json();
             
@@ -557,8 +580,18 @@ document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     initReveal();
     initBackToTop();
-    window.githubProjects = new GitHubProjects('AlphaZx-CJY');
-    new GitHubContributions('AlphaZx-CJY');
+    
+    // 延迟加载非关键数据，优先保证首屏交互
+    const loadGitHubData = () => {
+        window.githubProjects = new GitHubProjects('AlphaZx-CJY');
+        new GitHubContributions('AlphaZx-CJY');
+    };
+    
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadGitHubData, { timeout: 2000 });
+    } else {
+        setTimeout(loadGitHubData, 100);
+    }
 });
 
 // 点击模态框背景关闭

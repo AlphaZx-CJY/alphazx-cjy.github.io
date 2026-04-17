@@ -4,9 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AlphaZx - 丛继晔 | 个人主页</title>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://ghchart.rshah.org">
+    <link rel="dns-prefetch" href="https://api.github.com">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <link rel="stylesheet" href="style.css">
+    <style>
+      /* Critical CSS — 避免无样式内容闪烁 */
+      html { scroll-behavior: smooth; }
+      body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #fafbf9; color: #1a1a1a; line-height: 1.6; }
+      .dark body { background: #0a0a0a; color: #fafafa; }
+      .nav-simple { position: fixed; top: 0; width: 100%; z-index: 50; background: rgba(250,251,249,0.95); border-bottom: 1px solid #e5e8e3; }
+      .dark .nav-simple { background: rgba(10,10,10,0.95); }
+      .max-w-5xl { max-width: 64rem; } .mx-auto { margin-left: auto; margin-right: auto; }
+      .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .flex { display: flex; } .justify-between { justify-content: space-between; } .items-center { align-items: center; }
+      .h-16 { height: 4rem; } .pt-24 { padding-top: 6rem; }
+      .text-xl { font-size: 1.25rem; } .font-bold { font-weight: 700; }
+    </style>
 </head>
 <body>
     <!-- 导航栏 -->

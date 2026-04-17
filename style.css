@@ -3,8 +3,8 @@
    Primary: #0FA847
    ======================================== */
 
-/* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+/* Fonts — 使用系统字体栈，消除外部字体阻塞 */
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap'); */
 
 :root {
   /* Light mode - Warm green-tinted design */
@@ -49,37 +49,37 @@ html {
 }
 
 body {
-  font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
   background-color: var(--bg-primary);
-  background-image: 
-    radial-gradient(circle at 20% 30%, var(--accent-light) 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, var(--bg-secondary) 0%, transparent 40%);
-  background-attachment: fixed;
+  background-image:
+    radial-gradient(circle at 20% 30%, var(--accent-light) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, var(--bg-secondary) 0%, transparent 50%);
   color: var(--text-primary);
   line-height: 1.6;
 }
 
-/* Dot pattern overlay */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(var(--border) 1px, transparent 1px);
-  background-size: 32px 32px;
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.4;
+/* Navigation — backdrop-filter 按需启用，减少 GPU 压力 */
+.nav-simple {
+  background: rgba(250, 251, 249, 0.95);
+  border-bottom: 1px solid var(--border);
 }
 
-/* Navigation */
-.nav-simple {
-  background: rgba(var(--bg-primary), 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+@supports (backdrop-filter: blur(12px)) {
+  .nav-simple {
+    background: rgba(250, 251, 249, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+.dark .nav-simple {
+  background: rgba(10, 10, 10, 0.95);
+}
+
+@supports (backdrop-filter: blur(12px)) {
+  .dark .nav-simple {
+    background: rgba(10, 10, 10, 0.8);
+  }
 }
 
 /* Avatar - Enhanced */
@@ -103,7 +103,7 @@ body::before {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   box-shadow: 0 1px 3px var(--shadow);
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
@@ -150,7 +150,7 @@ body::before {
   background: transparent;
   color: var(--text-secondary);
   border: 1px solid var(--border);
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease;
 }
 
 .tag-secondary:hover {
@@ -170,7 +170,7 @@ body::before {
   color: var(--text-secondary);
   background: var(--bg-card);
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
 }
 
 .social-link:hover {
@@ -236,7 +236,7 @@ body::before {
   text-decoration: none;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  transition: all 0.15s ease;
+  transition: border-color 0.15s ease;
 }
 
 .tool-link:hover {
@@ -259,7 +259,7 @@ body::before {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 20px;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 
 .project-card:hover {
@@ -313,7 +313,7 @@ body::before {
   background: var(--bg-card);
   border: 1px solid var(--border);
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease;
 }
 
 .footer-link:hover {
@@ -342,7 +342,7 @@ body::before {
   border: none;
   cursor: pointer;
   box-shadow: 0 4px 16px rgba(15, 168, 71, 0.3);
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -362,7 +362,7 @@ body::before {
   border: 1px solid var(--border);
   cursor: pointer;
   box-shadow: 0 2px 8px var(--shadow);
-  transition: all 0.2s ease;
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -400,7 +400,7 @@ body::before {
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
-  transition: all 0.2s ease;
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
 }
 
 .chat-window.open {
@@ -475,7 +475,7 @@ body::before {
   background: transparent;
   color: var(--text-muted);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
 }
 
 .quick-q:hover {
@@ -574,7 +574,7 @@ body::before {
   background: var(--bg-card);
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease;
 }
 
 .theme-toggle:hover {
@@ -594,7 +594,7 @@ body::before {
   padding: 16px;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.2s ease;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 .modal-overlay.active {
@@ -623,6 +623,7 @@ body::before {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease, transform 0.5s ease;
+  will-change: transform, opacity;
 }
 
 .reveal.active {
