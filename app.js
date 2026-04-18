@@ -1,5 +1,11 @@
 // AlphaZx - Clean & Minimal Portfolio
 
+// 手动指定项目的在线访问地址（仓库名 -> URL）
+// 当 GitHub API 未返回 homepage 或需要覆盖时生效
+const PROJECT_URLS = {
+    // 示例：'my-project': 'https://my-project.vercel.app',
+};
+
 // 节流工具函数
 function throttle(fn, wait) {
     let lastTime = 0;
@@ -207,7 +213,10 @@ class DigitalAvatar {
             const topProjects = projects.slice(0, 3);
             let response = '我最近在 GitHub 上维护着以下项目：<br><br>';
             topProjects.forEach((project, index) => {
-                response += `${index + 1}. <strong>${project.name}</strong> (${project.stars} ⭐) - ${project.description}<br>`;
+                const homepageLink = project.homepage
+                    ? ` <a href="${project.homepage}" target="_blank" style="color: var(--text); font-weight: 500; font-size: 0.75rem;">[访问]</a>`
+                    : '';
+                response += `${index + 1}. <strong>${project.name}</strong> (${project.stars} ⭐) - ${project.description}${homepageLink}<br>`;
             });
             response += '<br>欢迎去 <a href="https://github.com/AlphaZx-CJY" target="_blank" style="color: var(--text); font-weight: 500;">GitHub</a> 查看更多详情！';
             return response;
@@ -230,7 +239,10 @@ class DigitalAvatar {
             let response = '我在 GitHub 上最受欢迎的 4 个项目：<br><br>';
             topProjects.forEach((project, index) => {
                 const desc = project.description || project.desc || '暂无描述';
-                response += `${index + 1}. <strong>${project.name}</strong> ⭐ ${project.stars} - ${desc}<br>`;
+                const homepageLink = project.homepage
+                    ? ` <a href="${project.homepage}" target="_blank" style="color: var(--text); font-weight: 500; font-size: 0.75rem;">[访问]</a>`
+                    : '';
+                response += `${index + 1}. <strong>${project.name}</strong> ⭐ ${project.stars} - ${desc}${homepageLink}<br>`;
             });
             response += `<br><a href="${this.knowledge.contact.githubUrl}?tab=repositories" target="_blank" style="color: var(--text); font-weight: 500;">查看更多项目 →</a>`;
             return response;
@@ -414,7 +426,16 @@ class GitHubProjects {
             if (!projects || projects.length === 0) {
                 throw new Error('未找到项目');
             }
-            
+
+            // 合并手动指定的在线访问地址
+            projects = projects.map(project => {
+                const manualUrl = PROJECT_URLS[project.name];
+                if (manualUrl) {
+                    project.homepage = manualUrl;
+                }
+                return project;
+            });
+
             window.githubProjectsData = projects.sort((a, b) => b.stars - a.stars);
             this.renderProjects(projects);
         } catch (error) {
@@ -491,7 +512,8 @@ class GitHubProjects {
                 language: repo.language || 'Unknown',
                 languageColor: this.getLanguageColor(repo.language),
                 updated_at: repo.updated_at,
-                html_url: repo.html_url
+                html_url: repo.html_url,
+                homepage: repo.homepage || ''
             }));
         } catch (error) {
             console.log('获取 repos 失败:', error);
@@ -535,13 +557,28 @@ class GitHubProjects {
     
     renderProjects(projects) {
         if (!this.container) return;
-        
+
         const displayProjects = projects.slice(0, 4);
-        
-        this.container.innerHTML = displayProjects.map(project => `
+
+        this.container.innerHTML = displayProjects.map(project => {
+            const hasHomepage = project.homepage && project.homepage.trim() !== '';
+            const actionsHtml = hasHomepage
+                ? `<div class="project-actions">
+                    <a href="${project.homepage}" target="_blank" rel="noopener noreferrer" class="project-link" title="在线访问">
+                        <i class="fas fa-external-link-alt" style="font-size: 0.625rem;"></i> 访问
+                    </a>
+                    <a href="${project.html_url}" target="_blank" rel="noopener noreferrer" class="project-link" title="查看源码">
+                        <i class="fas fa-code" style="font-size: 0.625rem;"></i> 源码
+                    </a>
+                   </div>`
+                : `<a href="${project.html_url}" target="_blank" rel="noopener noreferrer" class="project-link">
+                    查看 <i class="fas fa-arrow-right" style="font-size: 0.625rem;"></i>
+                   </a>`;
+
+            return `
             <div class="project-card">
                 <div class="project-header">
-                    <a href="${project.html_url}" target="_blank" rel="noopener noreferrer" 
+                    <a href="${project.html_url}" target="_blank" rel="noopener noreferrer"
                        class="project-name" title="${project.name}">${project.name}</a>
                     <div class="project-stars">
                         <i class="fas fa-star" style="font-size: 0.75rem; color: var(--text-muted);"></i>
@@ -554,12 +591,11 @@ class GitHubProjects {
                         <span class="project-lang-dot" style="background-color: ${project.languageColor}"></span>
                         <span>${project.language}</span>
                     </span>
-                    <a href="${project.html_url}" target="_blank" rel="noopener noreferrer" class="project-link">
-                        查看 <i class="fas fa-arrow-right" style="font-size: 0.625rem;"></i>
-                    </a>
+                    ${actionsHtml}
                 </div>
             </div>
-        `).join('');
+            `;
+        }).join('');
     }
 }
 
