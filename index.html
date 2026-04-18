@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlphaZx - 丛继晔 | 个人主页</title>
+    <title>AlphaZx — 丛继晔</title>
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="dns-prefetch" href="https://ghchart.rshah.org">
@@ -13,341 +13,300 @@
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <link rel="stylesheet" href="style.css">
     <style>
-      /* Critical CSS — 避免无样式内容闪烁 */
       html { scroll-behavior: smooth; }
-      body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #fafbf9; color: #1a1a1a; line-height: 1.6; }
-      .dark body { background: #0a0a0a; color: #fafafa; }
-      .nav-simple { position: fixed; top: 0; width: 100%; z-index: 50; background: rgba(250,251,249,0.95); border-bottom: 1px solid #e5e8e3; }
-      .dark .nav-simple { background: rgba(10,10,10,0.95); }
-      .max-w-5xl { max-width: 64rem; } .mx-auto { margin-left: auto; margin-right: auto; }
-      .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
-      .flex { display: flex; } .justify-between { justify-content: space-between; } .items-center { align-items: center; }
-      .h-16 { height: 4rem; } .pt-24 { padding-top: 6rem; }
-      .text-xl { font-size: 1.25rem; } .font-bold { font-weight: 700; }
+      body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #fafafa; color: #171717; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+      .dark body { background: #0a0a0a; color: #f5f5f5; }
+      .nav-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(250,250,250,0.85); border-bottom: 1px solid #e5e5e5; }
+      .nav-inner { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="fixed top-0 w-full z-50 nav-simple">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="flex justify-between items-center h-16">
-                <a href="#" class="text-xl font-bold text-accent">AlphaZx</a>
-                <button id="themeToggle" class="theme-toggle" aria-label="切换主题">
-                    <i class="fas fa-sun text-amber-500 dark:hidden"></i>
-                    <i class="fas fa-moon text-sky-400 hidden dark:block"></i>
-                </button>
-            </div>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">AlphaZx</a>
+            <button id="themeToggle" class="theme-toggle" aria-label="切换主题">
+                <i class="fas fa-sun dark:hidden"></i>
+                <i class="fas fa-moon hidden dark:block"></i>
+            </button>
         </div>
     </nav>
 
-    <!-- 主要内容 -->
-    <main class="pt-24 pb-16 px-6">
-        <div class="max-w-3xl mx-auto">
-            
-            <!-- Hero -->
-            <section class="py-16 text-center reveal">
-                <div class="avatar-simple mx-auto mb-6">A</div>
-                <h1 class="text-3xl font-bold mb-2">AlphaZx <span class="text-secondary text-xl font-normal">丛继晔</span></h1>
-                <p class="text-secondary mb-4">软件工程师 · AI 工具开发者</p>
-                <p class="text-muted mb-8">喜欢地理，喜欢将复杂的东西简单化</p>
-                
-                <div class="flex justify-center gap-3 mb-8">
-                    <a href="mailto:congjiye@outlook.com" class="social-link" title="邮箱">
-                        <i class="fas fa-envelope"></i>
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container reveal">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    <span>Available for collaboration</span>
+                </div>
+                <h1 class="hero-title">AlphaZx</h1>
+                <p class="hero-subtitle">丛继晔 · 软件工程师 · AI 工具开发者</p>
+                <p class="hero-desc">
+                    喜欢地理，喜欢将复杂的东西简单化。目前专注于 IDE 工具链开发与 AI 应用探索，正在学习 Vibe Coding。
+                </p>
+                <div class="hero-actions">
+                    <a href="mailto:congjiye@outlook.com" class="btn btn-primary">
+                        <i class="fas fa-envelope text-xs"></i>
+                        联系我
                     </a>
-                    <button onclick="showWeixin()" class="social-link" title="微信">
-                        <i class="fab fa-weixin"></i>
+                    <button onclick="showWeixin()" class="btn btn-secondary" style="border: none;">
+                        <i class="fas fa-comment-dots text-xs"></i>
+                        微信
                     </button>
-                    <a href="https://github.com/AlphaZx-CJY" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
-                        <i class="fab fa-github"></i>
+                    <a href="https://github.com/AlphaZx-CJY" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="border: none;">
+                        <i class="fas fa-terminal text-xs"></i>
+                        GitHub
                     </a>
                 </div>
-                
-                <div class="flex flex-wrap justify-center gap-2">
+                <div class="hero-tags">
                     <span class="tag">Vibe Coding</span>
                     <span class="tag">AI 工具链</span>
                     <span class="tag">LLM 应用</span>
+                    <span class="tag">DevEco Studio</span>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- 关于我 -->
-            <section id="about" class="py-12 reveal">
-                <h2 class="section-title">关于我</h2>
-                <div class="card p-6 mb-8">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 rounded-lg bg-accent text-white flex items-center justify-center text-lg">
-                            <i class="fas fa-user"></i>
+        <!-- About -->
+        <section id="about">
+            <div class="container reveal">
+                <div class="section-header">
+                    <div class="section-label">关于我</div>
+                    <h2 class="section-title">经历与技能</h2>
+                    <p class="section-desc">软件工程师，现居上海。从语音识别到 IDE 开发，一直在探索技术与产品的边界。</p>
+                </div>
+
+                <div class="grid-2 gap-lg">
+                    <!-- Profile Card -->
+                    <div class="profile-card">
+                        <div class="profile-avatar">A</div>
+                        <div class="profile-name">丛继晔</div>
+                        <div class="profile-role">软件工程师 · 上海</div>
+                        <div class="profile-bio">
+                            杭州电子科技大学软件工程本科毕业。先后在法院信息化和鸿蒙 IDE 领域深耕，对低代码平台、AI 辅助开发有丰富实践经验。
                         </div>
-                        <div>
-                            <h3 class="font-semibold">丛继晔</h3>
-                            <p class="text-sm text-muted">软件工程师 · 上海</p>
+                        <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+                            <div style="font-size: 0.8125rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem;">技能栈</div>
+                            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                                <span class="tag tag-solid">TypeScript</span>
+                                <span class="tag tag-solid">Java</span>
+                                <span class="tag tag-solid">Python</span>
+                                <span class="tag">AI 应用</span>
+                                <span class="tag">IDE 开发</span>
+                                <span class="tag">LLM</span>
+                            </div>
                         </div>
                     </div>
-                    
-                    <!-- 时间线 -->
+
+                    <!-- Timeline -->
                     <div class="timeline">
-                        <div class="timeline-item">
+                        <div class="timeline-item active">
                             <div class="timeline-dot"></div>
-                            <div class="flex flex-wrap items-center gap-2 mb-2">
-                                <h4 class="font-semibold">华为 OD</h4>
-                                <span class="text-xs text-muted bg-secondary px-2 py-0.5 rounded">2021 至今 · 上海</span>
-                            </div>
-                            <p class="text-sm text-secondary mb-3">负责 DevEco Studio 亮点特性开发</p>
-                            <ul class="space-y-2 text-sm text-secondary">
-                                <li class="flex items-start gap-2">
-                                    <i class="fas fa-check text-accent text-xs mt-1"></i>
-                                    <span><strong>低代码平台</strong> — 可视化拖拽式 UI 构建</span>
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <i class="fas fa-check text-accent text-xs mt-1"></i>
-                                    <span><strong>UI 生成</strong> — 安卓 XML 自动转换为鸿蒙页面</span>
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <i class="fas fa-check text-accent text-xs mt-1"></i>
-                                    <span><strong>智慧化调优</strong> — AI 分析调优数据，自动识别问题</span>
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <i class="fas fa-check text-accent text-xs mt-1"></i>
-                                    <span><strong>UI 意图识别</strong> — 智能解析用户设计意图</span>
-                                </li>
+                            <div class="timeline-role">华为 OD</div>
+                            <div class="timeline-meta">2021 至今 · 上海 · DevEco Studio 亮点特性</div>
+                            <div class="timeline-desc">负责 IDE 核心特性开发，涵盖低代码平台、UI 生成、智慧化调优、UI 意图识别等方向。</div>
+                            <ul class="timeline-list">
+                                <li>低代码平台 — 可视化拖拽式 UI 构建</li>
+                                <li>UI 生成 — 安卓 XML 自动转换为鸿蒙页面</li>
+                                <li>智慧化调优 — AI 分析调优数据，自动识别问题</li>
+                                <li>UI 意图识别 — 智能解析用户设计意图</li>
                             </ul>
                         </div>
-                        
+
                         <div class="timeline-item">
-                            <div class="timeline-dot" style="background: #f59e0b;"></div>
-                            <div class="flex flex-wrap items-center gap-2 mb-2">
-                                <h4 class="font-semibold">北京华宇软件股份有限公司</h4>
-                                <span class="text-xs text-muted bg-secondary px-2 py-0.5 rounded">2019 - 2021</span>
-                            </div>
-                            
-                            <div class="space-y-3">
-                                <div class="p-3 rounded-md bg-secondary/50">
-                                    <h5 class="text-sm font-medium mb-1 flex items-center gap-2">
-                                        <i class="fas fa-microphone-alt text-amber-500"></i>
-                                        语音识别项目
-                                    </h5>
-                                    <p class="text-sm text-secondary">基于 Kaldi 框架，吉林市人民法院落地。支持自学习、热词加载、流式识别。</p>
-                                </div>
-                                
-                                <div class="p-3 rounded-md bg-secondary/50">
-                                    <h5 class="text-sm font-medium mb-1 flex items-center gap-2">
-                                        <i class="fas fa-walking text-amber-500"></i>
-                                        姿态识别项目
-                                    </h5>
-                                    <p class="text-sm text-secondary">基于 STGCN + OpenPose，监狱场景实时检测。支持举手、下蹲、摔倒、殴打等姿态。</p>
-                                </div>
-                            </div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-role">北京华宇软件股份有限公司</div>
+                            <div class="timeline-meta">2019 - 2021</div>
+                            <div class="timeline-desc">参与法院与监狱场景的 AI 项目落地，涵盖语音识别与姿态识别两大方向。</div>
+                            <ul class="timeline-list">
+                                <li>语音识别 — 基于 Kaldi，支持自学习、热词加载、流式识别</li>
+                                <li>姿态识别 — 基于 STGCN + OpenPose，监狱场景实时检测</li>
+                            </ul>
                         </div>
-                        
+
                         <div class="timeline-item">
-                            <div class="timeline-dot" style="background: #6b7280;"></div>
-                            <div class="flex flex-wrap items-center gap-2 mb-1">
-                                <h4 class="font-semibold">杭州电子科技大学</h4>
-                                <span class="text-xs text-muted bg-secondary px-2 py-0.5 rounded">2015 - 2019 · 本科</span>
-                            </div>
-                            <p class="text-sm text-secondary">软件工程专业</p>
-                        </div>
-                    </div>
-                    
-                    <!-- 技能标签 -->
-                    <div class="mt-6 pt-6 border-t border-border">
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tag-secondary px-3 py-1.5 text-sm">TypeScript</span>
-                            <span class="tag-secondary px-3 py-1.5 text-sm">Java</span>
-                            <span class="tag-secondary px-3 py-1.5 text-sm">Python</span>
-                            <span class="tag-secondary px-3 py-1.5 text-sm">AI 应用</span>
-                            <span class="tag-secondary px-3 py-1.5 text-sm">IDE 开发</span>
-                            <span class="tag-secondary px-3 py-1.5 text-sm">LLM</span>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-role">杭州电子科技大学</div>
+                            <div class="timeline-meta">2015 - 2019 · 本科 · 软件工程</div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- 工具箱 -->
-            <section class="py-12 reveal">
-                <h2 class="section-title">工具箱</h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                    <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" class="card p-4 flex items-center gap-3 tool-link">
-                        <div class="tool-icon bg-blue-500/10 text-blue-500">
-                            <i class="fas fa-code"></i>
-                        </div>
+        <!-- Toolbox -->
+        <section>
+            <div class="container reveal">
+                <div class="section-header">
+                    <div class="section-label">工具箱</div>
+                    <h2 class="section-title">日常使用的工具</h2>
+                </div>
+                <div class="tool-grid">
+                    <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-code"></i></div>
                         <div>
-                            <div class="font-medium text-primary text-sm">VS Code</div>
-                            <div class="text-xs text-muted">主力编辑器</div>
+                            <div class="tool-name">VS Code</div>
+                            <div class="tool-desc">主力编辑器</div>
                         </div>
                     </a>
-                    <a href="https://cursor.sh/" target="_blank" rel="noopener noreferrer" class="card p-4 flex items-center gap-3 tool-link">
-                        <div class="tool-icon bg-emerald-500/10 text-emerald-500">
-                            <i class="fas fa-terminal"></i>
-                        </div>
+                    <a href="https://cursor.sh/" target="_blank" rel="noopener noreferrer" class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-terminal"></i></div>
                         <div>
-                            <div class="font-medium text-primary text-sm">Cursor</div>
-                            <div class="text-xs text-muted">AI 编辑器</div>
+                            <div class="tool-name">Cursor</div>
+                            <div class="tool-desc">AI 编辑器</div>
                         </div>
                     </a>
-                    <a href="https://www.jetbrains.com/idea/" target="_blank" rel="noopener noreferrer" class="card p-4 flex items-center gap-3 tool-link">
-                        <div class="tool-icon bg-orange-500/10 text-orange-500">
-                            <i class="fab fa-java"></i>
-                        </div>
+                    <a href="https://www.jetbrains.com/idea/" target="_blank" rel="noopener noreferrer" class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-coffee"></i></div>
                         <div>
-                            <div class="font-medium text-primary text-sm">IntelliJ IDEA</div>
-                            <div class="text-xs text-muted">Java 开发</div>
+                            <div class="tool-name">IntelliJ IDEA</div>
+                            <div class="tool-desc">Java 开发</div>
                         </div>
                     </a>
-                    <a href="https://github.com/features/copilot" target="_blank" rel="noopener noreferrer" class="card p-4 flex items-center gap-3 tool-link">
-                        <div class="tool-icon bg-indigo-500/10 text-indigo-500">
-                            <i class="fas fa-robot"></i>
-                        </div>
+                    <a href="https://github.com/features/copilot" target="_blank" rel="noopener noreferrer" class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-robot"></i></div>
                         <div>
-                            <div class="font-medium text-primary text-sm">GitHub Copilot</div>
-                            <div class="text-xs text-muted">AI 编码助手</div>
+                            <div class="tool-name">GitHub Copilot</div>
+                            <div class="tool-desc">AI 编码助手</div>
                         </div>
                     </a>
-                    <a href="https://kimi.moonshot.cn/" target="_blank" rel="noopener noreferrer" class="card p-4 flex items-center gap-3 tool-link">
-                        <div class="tool-icon bg-purple-500/10 text-purple-500">
-                            <i class="fas fa-brain"></i>
-                        </div>
+                    <a href="https://kimi.moonshot.cn/" target="_blank" rel="noopener noreferrer" class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-brain"></i></div>
                         <div>
-                            <div class="font-medium text-primary text-sm">Kimi / Kimi CLI</div>
-                            <div class="text-xs text-muted">AI 助手</div>
+                            <div class="tool-name">Kimi / Kimi CLI</div>
+                            <div class="tool-desc">AI 助手</div>
                         </div>
                     </a>
-                    <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer" class="card p-4 flex items-center gap-3 tool-link">
-                        <div class="tool-icon bg-gray-500/10 text-gray-500">
-                            <i class="fab fa-github"></i>
-                        </div>
+                    <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer" class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-terminal"></i></div>
                         <div>
-                            <div class="font-medium text-primary text-sm">Git</div>
-                            <div class="text-xs text-muted">版本控制</div>
+                            <div class="tool-name">Git</div>
+                            <div class="tool-desc">版本控制</div>
                         </div>
                     </a>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- 项目展示 -->
-            <section id="projects" class="py-12 reveal">
-                <div class="flex items-center justify-between mb-6">
-                    <h2 class="section-title" style="margin-bottom: 0;">个人项目</h2>
-                    <a href="https://github.com/AlphaZx-CJY?tab=repositories" target="_blank" rel="noopener noreferrer" class="text-sm text-secondary hover:text-accent transition-colors">
-                        查看更多 <i class="fas fa-arrow-right text-xs ml-1"></i>
+        <!-- Projects -->
+        <section id="projects">
+            <div class="container reveal">
+                <div class="section-header" style="display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <div class="section-label">项目</div>
+                        <h2 class="section-title">个人项目</h2>
+                    </div>
+                    <a href="https://github.com/AlphaZx-CJY?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="margin-bottom: 0.25rem;">
+                        查看全部 <i class="fas fa-arrow-right text-xs"></i>
                     </a>
                 </div>
-                
-                <div id="github-pinned-projects" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="card p-6 text-center">
-                        <i class="fas fa-spinner fa-spin text-accent/60"></i>
-                        <p class="mt-2 text-sm text-muted">加载中...</p>
+                <div id="github-pinned-projects" class="project-grid">
+                    <div class="project-card" style="display: flex; align-items: center; justify-content: center; min-height: 160px;">
+                        <div style="text-align: center; color: var(--text-muted);">
+                            <i class="fas fa-spinner fa-spin" style="margin-bottom: 0.5rem;"></i>
+                            <div style="font-size: 0.875rem;">加载中...</div>
+                        </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- 坐标 -->
-            <section class="py-12 reveal">
-                <h2 class="section-title">坐标</h2>
+        <!-- Location -->
+        <section style="padding: 2rem 0;">
+            <div class="container reveal">
                 <div class="location-card">
-                    <div class="flex flex-col sm:flex-row items-center gap-6 relative z-10">
-                        <div class="w-20 h-20 rounded-full bg-accent/10 text-accent flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-map-marker-alt text-3xl"></i>
-                        </div>
-                        <div class="text-center sm:text-left">
-                            <div class="coord-display">
-                                N31°14' E121°29'
-                            </div>
-                            <div class="text-secondary mb-2">中国 · 上海</div>
-                            <p class="text-sm text-muted">
-                                喜欢地理，喜欢研究不同地方的文化和地理特征。每个坐标都代表着一个独特的故事。
-                            </p>
-                        </div>
+                    <div class="location-main">
+                        <div class="location-coord-large">N31°14' E121°29'</div>
+                        <div class="location-city">中国 · 上海</div>
+                        <div class="location-desc">喜欢地理，喜欢研究不同地方的文化和地理特征</div>
                     </div>
-                    <div class="mt-6 pt-6 border-t border-border">
-                        <div class="flex flex-wrap gap-2 justify-center sm:justify-start">
-                            <span class="tag-secondary px-3 py-1 text-xs">软件工程师</span>
-                            <span class="tag-secondary px-3 py-1 text-xs">华为OD</span>
-                            <span class="tag-secondary px-3 py-1 text-xs">DevEco Studio</span>
-                            <span class="tag-secondary px-3 py-1 text-xs">AI 工具链</span>
+                    <div class="location-meta">
+                        <div class="location-meta-item">
+                            <div class="location-meta-label">时区</div>
+                            <div class="location-meta-value">UTC+8</div>
+                        </div>
+                        <div class="location-meta-item">
+                            <div class="location-meta-label">状态</div>
+                            <div class="location-meta-value">
+                                <span class="location-status-dot"></span>
+                                开放交流
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
-
-        </div>
+            </div>
+        </section>
     </main>
 
-    <!-- 页脚 - 简洁设计 -->
-    <footer class="footer-simple">
-        <div class="max-w-3xl mx-auto px-6 py-6">
-            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-                <p class="text-xs text-muted">
-                    © 2026 AlphaZx · Built with Vibe Coding
-                </p>
-                <div class="flex items-center gap-4">
-                    <a href="https://blog.csdn.net/weixin_40448140" target="_blank" rel="noopener noreferrer" class="footer-link" title="CSDN博客">
-                        <i class="fas fa-blog text-xs"></i>
-                    </a>
-                    <a href="mailto:congjiye@outlook.com" class="footer-link" title="邮箱">
-                        <i class="fas fa-envelope text-xs"></i>
-                    </a>
-                    <button onclick="showWeixin()" class="footer-link" title="微信">
-                        <i class="fab fa-weixin text-xs"></i>
-                    </button>
-                    <a href="https://github.com/AlphaZx-CJY" target="_blank" rel="noopener noreferrer" class="footer-link" title="GitHub">
-                        <i class="fab fa-github text-xs"></i>
-                    </a>
-                </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div>
+                <div class="footer-brand">AlphaZx</div>
+                <div class="footer-copy">© 2026 丛继晔 · Built with Vibe Coding</div>
+            </div>
+            <div class="footer-links">
+                <a href="https://blog.csdn.net/weixin_40448140" target="_blank" rel="noopener noreferrer" class="social-btn" title="CSDN博客">
+                    <i class="fas fa-blog text-xs"></i>
+                </a>
+                <a href="mailto:congjiye@outlook.com" class="social-btn" title="邮箱">
+                    <i class="fas fa-envelope text-xs"></i>
+                </a>
+                <button onclick="showWeixin()" class="social-btn" title="微信">
+                    <i class="fas fa-comment-dots text-xs"></i>
+                </button>
+                <a href="https://github.com/AlphaZx-CJY" target="_blank" rel="noopener noreferrer" class="social-btn" title="GitHub">
+                    <i class="fas fa-terminal text-xs"></i>
+                </a>
             </div>
         </div>
     </footer>
 
-    <!-- 悬浮按钮（聊天/返回顶部整合） -->
+    <!-- Floating Actions -->
     <div class="fab-container">
-        <button id="backToTopBtn" class="fab-secondary" aria-label="返回顶部" title="返回顶部">
-            <i class="fas fa-arrow-up"></i>
+        <button id="backToTopBtn" class="fab fab-secondary" aria-label="返回顶部" title="返回顶部">
+            <i class="fas fa-arrow-up text-sm"></i>
         </button>
-        <button id="chatFloatBtn" class="fab-primary" aria-label="打开数字分身聊天" title="数字分身">
-            <i class="fas fa-comments"></i>
+        <button id="chatFloatBtn" class="fab" aria-label="打开数字分身聊天" title="数字分身">
+            <i class="fas fa-comments text-sm"></i>
         </button>
     </div>
 
-    <!-- 聊天窗口 -->
+    <!-- Chat Window -->
     <div id="chatWindow" class="chat-window">
         <div class="chat-header">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-sm font-bold">A</div>
-                <div>
-                    <div class="font-medium text-sm">AlphaZx 数字分身</div>
-                    <div class="text-xs text-white/80 flex items-center gap-1">
-                        <span class="w-1.5 h-1.5 bg-green-300 rounded-full"></span>
-                        在线
-                    </div>
-                </div>
+            <div>
+                <div class="chat-header-title">AlphaZx 数字分身</div>
+                <div class="chat-header-status">在线</div>
             </div>
-            <button id="chatCloseBtn" class="w-8 h-8 rounded-full hover:bg-white/20 flex items-center justify-center transition-colors">
-                <i class="fas fa-times text-sm"></i>
+            <button id="chatCloseBtn" class="chat-close">
+                <i class="fas fa-times text-xs"></i>
             </button>
         </div>
-        
+
         <div id="chatMessages" class="chat-messages">
             <div class="message">
                 <div class="message-avatar message-avatar-bot">A</div>
                 <div class="message-content message-content-bot">
                     <p>你好！我是 AlphaZx 的数字分身。试试问我：</p>
-                    <ul class="mt-2 text-xs text-muted space-y-1">
-                        <li>• 最近在做什么？</li>
-                        <li>• 怎么联系我？</li>
-                        <li>• 有哪些作品？</li>
+                    <ul style="margin-top: 0.5rem; padding-left: 1rem; font-size: 0.8125rem; color: var(--text-muted);">
+                        <li>最近在做什么？</li>
+                        <li>怎么联系我？</li>
+                        <li>有哪些作品？</li>
                     </ul>
                 </div>
             </div>
         </div>
-        
+
         <div class="chat-input-area">
-            <div class="flex gap-2">
+            <div class="chat-input-wrap">
                 <input type="text" id="chatInput" placeholder="输入你的问题..." class="chat-input">
-                <button id="sendBtn" class="chat-send-btn">
-                    <i class="fas fa-paper-plane text-sm"></i>
+                <button id="sendBtn" class="chat-send">
+                    <i class="fas fa-paper-plane text-xs"></i>
                 </button>
             </div>
-            <div class="mt-3 flex flex-wrap gap-2">
+            <div class="chat-quick">
                 <button class="quick-q" data-question="最近在做什么？">最近在做什么？</button>
                 <button class="quick-q" data-question="怎么联系我？">怎么联系我？</button>
                 <button class="quick-q" data-question="有哪些作品？">有哪些作品？</button>
@@ -355,20 +314,16 @@
         </div>
     </div>
 
-    <!-- 微信模态框 -->
+    <!-- WeChat Modal -->
     <div id="weixinModal" class="modal-overlay">
         <div class="modal-content">
-            <div class="w-14 h-14 mx-auto mb-4 bg-green-500/10 rounded-full flex items-center justify-center">
-                <i class="fab fa-weixin text-2xl text-green-500"></i>
+            <div class="modal-icon">
+                <i class="fas fa-comment-dots"></i>
             </div>
-            <h3 class="font-semibold text-lg mb-2">添加微信好友</h3>
-            <p class="text-sm text-muted mb-4">扫码或搜索微信号添加好友</p>
-            <div class="bg-secondary rounded-lg p-4 mb-5">
-                <p class="text-xl font-mono font-bold tracking-wider">15968182684</p>
-            </div>
-            <button onclick="closeWeixin()" class="w-full py-2.5 bg-accent hover:bg-accent-dark text-white rounded-lg font-medium transition-colors">
-                知道了
-            </button>
+            <div class="modal-title">添加微信好友</div>
+            <div class="modal-desc">扫码或搜索微信号添加好友</div>
+            <div class="modal-code">15968182684</div>
+            <button onclick="closeWeixin()" class="modal-btn">知道了</button>
         </div>
     </div>
 

@@ -202,14 +202,14 @@ class DigitalAvatar {
         if (lowerMsg.includes('做什么') || lowerMsg.includes('在干') || lowerMsg.includes('工作')) {
             const projects = window.githubProjectsData;
             if (!projects || projects.length === 0) {
-                return '我最近正在学习 Vibe Coding 和探索 AI 工具链开发。<br><br>你可以去我的 <a href="https://github.com/AlphaZx-CJY" target="_blank" style="color: var(--accent)">GitHub 主页</a> 查看最新动态！';
+                return '我最近正在学习 Vibe Coding 和探索 AI 工具链开发。<br><br>你可以去我的 <a href="https://github.com/AlphaZx-CJY" target="_blank" style="color: var(--text); font-weight: 500;">GitHub 主页</a> 查看最新动态！';
             }
             const topProjects = projects.slice(0, 3);
             let response = '我最近在 GitHub 上维护着以下项目：<br><br>';
             topProjects.forEach((project, index) => {
                 response += `${index + 1}. <strong>${project.name}</strong> (${project.stars} ⭐) - ${project.description}<br>`;
             });
-            response += '<br>欢迎去 <a href="https://github.com/AlphaZx-CJY" target="_blank" style="color: var(--accent)">GitHub</a> 查看更多详情！';
+            response += '<br>欢迎去 <a href="https://github.com/AlphaZx-CJY" target="_blank" style="color: var(--text); font-weight: 500;">GitHub</a> 查看更多详情！';
             return response;
         }
         
@@ -224,7 +224,7 @@ class DigitalAvatar {
         if (lowerMsg.includes('作品') || lowerMsg.includes('项目') || lowerMsg.includes('portfolio')) {
             const projects = window.githubProjectsData;
             if (!projects || projects.length === 0) {
-                return '暂时无法获取项目数据，请直接访问我的 <a href="https://github.com/AlphaZx-CJY" target="_blank" style="color: var(--accent)">GitHub 主页</a> 查看所有项目。';
+                return '暂时无法获取项目数据，请直接访问我的 <a href="https://github.com/AlphaZx-CJY" target="_blank" style="color: var(--text); font-weight: 500;">GitHub 主页</a> 查看所有项目。';
             }
             const topProjects = projects.slice(0, 4);
             let response = '我在 GitHub 上最受欢迎的 4 个项目：<br><br>';
@@ -232,7 +232,7 @@ class DigitalAvatar {
                 const desc = project.description || project.desc || '暂无描述';
                 response += `${index + 1}. <strong>${project.name}</strong> ⭐ ${project.stars} - ${desc}<br>`;
             });
-            response += `<br><a href="${this.knowledge.contact.githubUrl}?tab=repositories" target="_blank" style="color: var(--accent)">查看更多项目 →</a>`;
+            response += `<br><a href="${this.knowledge.contact.githubUrl}?tab=repositories" target="_blank" style="color: var(--text); font-weight: 500;">查看更多项目 →</a>`;
             return response;
         }
         
@@ -385,7 +385,7 @@ class GitHubContributions {
                     alt="GitHub Contributions" 
                     class="github-chart-img"
                     loading="lazy"
-                    onerror="this.parentElement.innerHTML='<div class=\\'text-center py-4 text-muted text-sm\\'>无法加载贡献数据<br><a href=\\'https://github.com/${this.username}\\' target=\\'_blank\\' class=\\'text-accent hover:underline\\'>查看 GitHub 主页</a></div>'"
+                    onerror="this.parentElement.innerHTML='<div style=\\'text-align: center; padding: 1.5rem 0; color: var(--text-muted); font-size: 0.875rem;\\'>无法加载贡献数据<br><a href=\\'https://github.com/${this.username}\\' target=\\'_blank\\' style=\\'color: var(--text); font-weight: 500;\\'>查看 GitHub 主页</a></div>'"
                 />
             </a>
         `;
@@ -428,15 +428,15 @@ class GitHubProjects {
         if (!this.container) return;
         
         this.container.innerHTML = `
-            <div class="card p-8 text-center">
-                <div class="w-14 h-14 mx-auto mb-4 bg-secondary rounded-full flex items-center justify-center">
-                    <i class="fas fa-exclamation-triangle text-xl text-amber-500"></i>
+            <div class="project-card" style="text-align: center; min-height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--bg-subtle); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; color: var(--text-muted);">
+                    <i class="fas fa-exclamation-triangle"></i>
                 </div>
-                <h3 class="font-semibold mb-2">获取项目失败</h3>
-                <p class="text-sm text-muted mb-4">无法加载 GitHub 项目，请检查网络后重试</p>
-                <button onclick="window.githubProjects.retry()" class="btn-primary">
-                    <i class="fas fa-redo"></i>
-                    <span>重试</span>
+                <h3 style="font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.375rem;">获取项目失败</h3>
+                <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.25rem;">无法加载 GitHub 项目，请检查网络后重试</p>
+                <button onclick="window.githubProjects.retry()" class="btn btn-primary">
+                    <i class="fas fa-redo text-xs"></i>
+                    重试
                 </button>
             </div>
         `;
@@ -446,9 +446,11 @@ class GitHubProjects {
         if (!this.container) return;
         
         this.container.innerHTML = `
-            <div class="card p-8 text-center">
-                <i class="fas fa-spinner fa-spin text-accent/60"></i>
-                <p class="mt-2 text-sm text-muted">加载中...</p>
+            <div class="project-card" style="display: flex; align-items: center; justify-content: center; min-height: 180px; color: var(--text-muted);">
+                <div style="text-align: center;">
+                    <i class="fas fa-spinner fa-spin" style="margin-bottom: 0.5rem;"></i>
+                    <div style="font-size: 0.875rem;">加载中...</div>
+                </div>
             </div>
         `;
         
@@ -538,24 +540,22 @@ class GitHubProjects {
         
         this.container.innerHTML = displayProjects.map(project => `
             <div class="project-card">
-                <div class="flex justify-between items-start mb-3">
+                <div class="project-header">
                     <a href="${project.html_url}" target="_blank" rel="noopener noreferrer" 
-                       class="font-semibold text-primary hover:text-accent transition-colors truncate pr-2 text-lg" 
-                       title="${project.name}">${project.name}</a>
-                    <div class="flex items-center gap-1.5 text-sm text-muted flex-shrink-0 bg-secondary/50 px-2 py-1 rounded-full">
-                        <i class="fas fa-star text-amber-500"></i>
+                       class="project-name" title="${project.name}">${project.name}</a>
+                    <div class="project-stars">
+                        <i class="fas fa-star" style="font-size: 0.75rem; color: var(--text-muted);"></i>
                         <span>${project.stars}</span>
                     </div>
                 </div>
-                <p class="text-sm text-secondary mb-4 line-clamp-2 leading-relaxed">${project.description}</p>
-                <div class="flex items-center justify-between">
-                    <span class="lang-tag">
-                        <span class="lang-color" style="background-color: ${project.languageColor}"></span>
+                <p class="project-desc">${project.description}</p>
+                <div class="project-footer">
+                    <span class="project-lang">
+                        <span class="project-lang-dot" style="background-color: ${project.languageColor}"></span>
                         <span>${project.language}</span>
                     </span>
-                    <a href="${project.html_url}" target="_blank" rel="noopener noreferrer" 
-                       class="text-sm text-muted hover:text-accent transition-colors flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-secondary/50">
-                        查看 <i class="fas fa-arrow-right text-xs"></i>
+                    <a href="${project.html_url}" target="_blank" rel="noopener noreferrer" class="project-link">
+                        查看 <i class="fas fa-arrow-right" style="font-size: 0.625rem;"></i>
                     </a>
                 </div>
             </div>
